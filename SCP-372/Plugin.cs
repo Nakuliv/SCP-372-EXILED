@@ -17,35 +17,40 @@ namespace SCP_372
         private static readonly Lazy<Plugin> LazyInstance = new Lazy<Plugin>(() => new Plugin());
         public static Plugin Instance => LazyInstance.Value;
 
-        public override PluginPriority Priority => PluginPriority.Low;
+        public override PluginPriority Priority => PluginPriority.Default;
 
         public override string Name { get; } = "SCP-372";
         public override string Author { get; } = "Cwaniak U.G";
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 1, 0);
+        public override Version RequiredExiledVersion => new Version(2, 4, 3);
 
         private Handlers handler;
 
         public override void OnEnabled()
         {
-            base.OnEnabled();
             handler = new Handlers();
+            Plugin.Singleton = this;
             PlayerEv.ChangingRole += handler.OnChangingRole;
             PlayerEv.Shooting += handler.OnShooting;
             PlayerEv.Died += handler.onPlayerDied;
             PlayerEv.Hurting += handler.OnPlayerHurt;
             PlayerEv.ThrowingGrenade += handler.OnThrowingGrenade;
+
+            base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
-            base.OnDisabled();
             PlayerEv.ChangingRole -= handler.OnChangingRole;
             PlayerEv.Shooting -= handler.OnShooting;
             PlayerEv.Died -= handler.onPlayerDied;
             PlayerEv.Hurting -= handler.OnPlayerHurt;
             PlayerEv.ThrowingGrenade -= handler.OnThrowingGrenade;
-
             handler = null;
+
+            base.OnDisabled();
         }
+
+        public static Plugin Singleton;
     }
 }

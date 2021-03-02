@@ -14,13 +14,12 @@ namespace SCP_372
     {
         public Handlers handlers;
         int SCP372 = 0;
-        public System.Random rnd = new System.Random();
         public HashSet<string> scp372 = new HashSet<string>();
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
             if (ev.NewRole == RoleType.ClassD && SCP372 < 1 && !scp372.Contains($"{ev.Player.UserId}"))
             {
-                if (new Random().Next(0, 101) <= Plugin.Instance.Config.SpawnChance)
+                if (new Random().Next(0, 101) <= Plugin.Singleton.Config.SpawnChance)
                 {
                     Add372(ev.Player);
                 }
@@ -72,13 +71,14 @@ namespace SCP_372
                     p.IsInvisible = true;
                     p.SetRank("", "default");
                 });
-                p.Broadcast(Plugin.Instance.Config.SpawnMessageDuration, Plugin.Instance.Config.SpawnMessage, 0);
+                p.Broadcast(Plugin.Singleton.Config.SpawnMessageDuration, Plugin.Singleton.Config.SpawnMessage, 0);
 
                 Timing.CallDelayed(0.5f, () =>
                 {
                     p.Position = RandomItemSpawner.singleton.posIds.First(x => x.posID == "RandomPistol" && x.DoorTriggerName == "372").position.position;
                     p.RankName = "SCP-372";
                     p.RankColor = "red";
+                    p.Health = Plugin.Singleton.Config.Health;
                     Scp096.TurnedPlayers.Add(p);
                     Scp173.TurnedPlayers.Add(p);
                     scp372.Add($"{p.UserId}");
