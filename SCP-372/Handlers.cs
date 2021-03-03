@@ -26,7 +26,7 @@ namespace SCP_372
             }
             if (scp372.Contains(ev.Player.UserId))
             {
-                this.Remove372(ev.Player);
+                Remove372(ev.Player);
             }
 
         }
@@ -68,6 +68,7 @@ namespace SCP_372
             {
                 Timing.CallDelayed(0.1f, () =>
                 {
+                    p.Role = RoleType.Tutorial;
                     p.IsInvisible = true;
                     p.SetRank("", "default");
                 });
