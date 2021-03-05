@@ -22,7 +22,7 @@ namespace SCP_372
         public override string Name { get; } = "SCP-372";
         public override string Author { get; } = "Cwaniak U.G";
         public override Version Version => new Version(2, 1, 0);
-        public override Version RequiredExiledVersion => new Version(2,7,0);
+        public override Version RequiredExiledVersion => new Version(2, 3, 4);
 
         private Handlers handler;
 
