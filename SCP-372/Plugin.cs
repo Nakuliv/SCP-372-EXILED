@@ -14,15 +14,11 @@ namespace SCP_372
 {
     public class Plugin : Plugin<Config>
     {
-        private static readonly Lazy<Plugin> LazyInstance = new Lazy<Plugin>(() => new Plugin());
-        public static Plugin Instance => LazyInstance.Value;
-
-        public override PluginPriority Priority => PluginPriority.Default;
 
         public override string Name { get; } = "SCP-372";
         public override string Author { get; } = "Cwaniak U.G";
-        public override Version Version => new Version(2, 1, 0);
-        public override Version RequiredExiledVersion => new Version(2, 3, 4);
+        public override Version Version => new Version(1, 3, 0);
+        public override Version RequiredExiledVersion => new Version(2, 8, 0);
 
         private Handlers handler;
 
@@ -35,6 +31,7 @@ namespace SCP_372
             PlayerEv.Died += handler.onPlayerDied;
             PlayerEv.Hurting += handler.OnPlayerHurt;
             PlayerEv.ThrowingGrenade += handler.OnThrowingGrenade;
+            PlayerEv.EnteringPocketDimension += handler.OnEnterPocketDimension;
 
             base.OnEnabled();
         }

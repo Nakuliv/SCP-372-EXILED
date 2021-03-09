@@ -13,13 +13,13 @@ namespace SCP_372
     public class Handlers
     {
         public Handlers handlers;
-        int SCP372 = 0;
         public HashSet<string> scp372 = new HashSet<string>();
+        public Random rnd = new Random();
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (ev.NewRole == RoleType.ClassD && SCP372 < 1 && !scp372.Contains($"{ev.Player.UserId}"))
+            if (ev.NewRole == RoleType.ClassD && scp372.Count < Plugin.Singleton.Config.Max_SCP372_Count && !scp372.Contains(ev.Player.UserId))
             {
-                if (new Random().Next(0, 101) <= Plugin.Singleton.Config.SpawnChance)
+                if (rnd.Next(0, 101) <= Plugin.Singleton.Config.SpawnChance)
                 {
                     Add372(ev.Player);
                 }
@@ -42,6 +42,15 @@ namespace SCP_372
                 });
             }
         }
+
+        public void OnEnterPocketDimension(EnteringPocketDimensionEventArgs ev)
+        {
+            if (scp372.Contains(ev.Player.UserId))
+            {
+                ev.IsAllowed = false;
+            }
+        }
+
         public void OnThrowingGrenade(ThrowingGrenadeEventArgs ev)
         {
             if (scp372.Contains(ev.Player.UserId))
@@ -64,28 +73,25 @@ namespace SCP_372
 
             public void Add372(Player p)
         {
-            if (SCP372 < 1)
+            if (scp372.Count < Plugin.Singleton.Config.Max_SCP372_Count)
             {
-                Timing.CallDelayed(0.1f, () =>
-                {
-                    p.Role = RoleType.Tutorial;
-                    p.IsInvisible = true;
-                    p.SetRank("", "default");
-                });
-                p.Broadcast(Plugin.Singleton.Config.SpawnMessageDuration, Plugin.Singleton.Config.SpawnMessage, 0);
-
+                p.IsInvisible = true;
+                p.Broadcast(Plugin.Singleton.Config.SpawnMessage.Duration, Plugin.Singleton.Config.SpawnMessage.Content);
                 Timing.CallDelayed(0.5f, () =>
                 {
-                    p.Position = RandomItemSpawner.singleton.posIds.First(x => x.posID == "RandomPistol" && x.DoorTriggerName == "372").position.position;
-                    p.RankName = "SCP-372";
-                    p.RankColor = "red";
+                    p.Role = RoleType.Tutorial;
+                    p.MaxHealth = Plugin.Singleton.Config.Health;
                     p.Health = Plugin.Singleton.Config.Health;
+                    p.CustomInfo = $"<color=red>SCP-372</color>";
                     Scp096.TurnedPlayers.Add(p);
                     Scp173.TurnedPlayers.Add(p);
-                    scp372.Add($"{p.UserId}");
-                    SCP372++;
+                    scp372.Add(p.UserId);
                 });
-            }
+                Timing.CallDelayed(1f, () =>
+                {
+                    p.Position = RandomItemSpawner.singleton.posIds.First(x => x.posID == "RandomPistol" && x.DoorTriggerName == "372").position.position;
+                });
+                }
         }
 
         public void OnPlayerHurt(HurtingEventArgs ev)
@@ -93,31 +99,18 @@ namespace SCP_372
 
             if (scp372.Contains(ev.Attacker.UserId) && ev.Target.Team == Team.SCP || scp372.Contains(ev.Target.UserId) && ev.Attacker.Team == Team.SCP)
             {
-                if (ev.DamageType == DamageTypes.Scp106)
-                {
-                    Timing.CallDelayed(1f, () =>
-                    {
-                        ev.Target.Position = ev.Attacker.Position;
-                    });
-                    ev.Amount = 0f;
-                }
-                ev.Amount = 0f;
+                ev.IsAllowed = false;
             }
         }
 
             public void Remove372(Player p)
         {
-            if (scp372.Contains($"{p.UserId}"))
+            if (scp372.Contains(p.UserId))
             {
                 p.IsInvisible = false;
-                p.RefreshTag();
-                Timing.CallDelayed(0.1f, () =>
-                {
-                    scp372.Remove($"{p.UserId}");
-                    SCP372--;
-                });
                 Scp096.TurnedPlayers.Remove(p);
                 Scp173.TurnedPlayers.Remove(p);
+                scp372.Remove(p.UserId);
             }
             p.CustomInfo = null;
         }
