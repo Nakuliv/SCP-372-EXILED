@@ -16,8 +16,8 @@ namespace SCP_372
     {
 
         public override string Name { get; } = "SCP-372";
-        public override string Author { get; } = "Cwaniak U.G";
-        public override Version Version => new Version(1, 3, 0);
+        public override string Author { get; } = "Cwaniaak.";
+        public override Version Version => new Version(1, 3, 1);
         public override Version RequiredExiledVersion => new Version(2, 8, 0);
 
         private Handlers handler;
@@ -32,6 +32,7 @@ namespace SCP_372
             PlayerEv.Hurting += handler.OnPlayerHurt;
             PlayerEv.ThrowingGrenade += handler.OnThrowingGrenade;
             PlayerEv.EnteringPocketDimension += handler.OnEnterPocketDimension;
+            ServerEv.RestartingRound += handler.OnRoundRestart;
 
             base.OnEnabled();
         }
@@ -43,6 +44,7 @@ namespace SCP_372
             PlayerEv.Died -= handler.onPlayerDied;
             PlayerEv.Hurting -= handler.OnPlayerHurt;
             PlayerEv.ThrowingGrenade -= handler.OnThrowingGrenade;
+            ServerEv.RestartingRound -= handler.OnRoundRestart;
             handler = null;
 
             base.OnDisabled();
