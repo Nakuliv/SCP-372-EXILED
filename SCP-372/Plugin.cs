@@ -43,7 +43,7 @@ namespace SCP_372
             PlayerEv.Shooting -= handler.OnShooting;
             PlayerEv.Died -= handler.onPlayerDied;
             PlayerEv.Hurting -= handler.OnPlayerHurt;
-            PlayerEv.ThrowingGrenade -= handler.OnThrowingGrenade;
+            PlayerEv.ThrowingItem -= handler.OnThrowingItem;
             ServerEv.RestartingRound -= handler.OnRoundRestart;
             handler = null;
 
