@@ -1,0 +1,2 @@
+C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\obj\Debug\SCP-372.csproj.AssemblyReference.cache
+C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\obj\Debug\SCP-372.csproj.CoreCompileInputs.cache

@@ -35,6 +35,7 @@ namespace SCP_372
         public void OnRoundRestart()
         {
             scps372 = 0;
+            scp372.Clear();
         }
 
             public void OnShooting(ShootingEventArgs ev)
@@ -57,7 +58,7 @@ namespace SCP_372
             }
         }
 
-        public void OnThrowingGrenade(ThrowingGrenadeEventArgs ev)
+        public void OnThrowingItem(ThrowingItemEventArgs ev)
         {
             if (scp372.Contains(ev.Player.UserId))
             {
@@ -82,7 +83,7 @@ namespace SCP_372
             if (scps372 < Plugin.Singleton.Config.Max_SCP372_Count)
             {
                 p.IsInvisible = true;
-                p.Broadcast(Plugin.Singleton.Config.SpawnMessage.Duration, Plugin.Singleton.Config.SpawnMessage.Content);
+                p.Broadcast(Plugin.Singleton.Config.SpawnMessage.Duration, Plugin.Singleton.Config.SpawnMessage.Content, Broadcast.BroadcastFlags.Normal, true);
                 Timing.CallDelayed(0.5f, () =>
                 {
                     p.Role = RoleType.Tutorial;
