@@ -1632,28 +1632,6 @@
             A set of extensions for <see cref="T:ItemType"/>.
             </summary>
         </member>
-        <member name="M:Exiled.API.Extensions.ItemExtensions.Spawn(ItemType,UnityEngine.Vector3,UnityEngine.Quaternion,System.Single,System.Boolean)">
-            <summary>
-            Spawns a <see cref="T:InventorySystem.Items.Pickups.ItemPickupBase"/> in a desired <see cref="T:UnityEngine.Vector3"/> position.
-            </summary>
-            <param name="itemType">The type of the item to be spawned.</param>
-            <param name="position">Where the item will be spawned.</param>
-            <param name="rotation">The rotation. We recommend you to use <see cref="M:UnityEngine.Quaternion.Euler(System.Single,System.Single,System.Single)"/>.</param>
-            <param name="weight"><inheritdoc cref="F:InventorySystem.Items.Pickups.PickupSyncInfo.Weight"/></param>
-            <param name="isLocked"><inheritdoc cref="P:InventorySystem.Items.Pickups.PickupSyncInfo.Locked"/></param>
-            <returns>Returns the spawned <see cref="T:InventorySystem.Items.Pickups.ItemPickupBase"/>.</returns>
-        </member>
-        <member name="M:Exiled.API.Extensions.ItemExtensions.Spawn(InventorySystem.Items.ItemBase,UnityEngine.Vector3,UnityEngine.Quaternion,System.Single,System.Boolean)">
-            <summary>
-            Spawns a <see cref="T:InventorySystem.Items.Pickups.ItemPickupBase"/> in a desired <see cref="T:UnityEngine.Vector3"/> position.
-            </summary>
-            <param name="item">The <see cref="T:InventorySystem.Items.ItemBase"/> of the item to be spawned.</param>
-            <param name="position">Where the item will be spawned.</param>
-            <param name="rotation">The rotation. We recommend you to use <see cref="M:UnityEngine.Quaternion.Euler(System.Single,System.Single,System.Single)"/>.</param>
-            <param name="weight"><inheritdoc cref="F:InventorySystem.Items.Pickups.PickupSyncInfo.Weight"/></param>
-            <param name="isLocked"><inheritdoc cref="P:InventorySystem.Items.Pickups.PickupSyncInfo.Locked"/></param>
-            <returns>Returns the spawned <see cref="T:InventorySystem.Items.Pickups.ItemPickupBase"/>.</returns>
-        </member>
         <member name="M:Exiled.API.Extensions.ItemExtensions.IsAmmo(ItemType)">
             <summary>
             Check if an <see cref="T:ItemType">item</see> is an ammo.
@@ -1865,6 +1843,18 @@
             <param name="behaviorOwner"><see cref="T:Mirror.NetworkIdentity"/> of object that owns <see cref="T:Mirror.NetworkBehaviour"/>.</param>
             <param name="targetType"><see cref="T:Mirror.NetworkBehaviour"/>'s type.</param>
             <param name="customAction">Custom writing action.</param>
+            <example>
+            EffectOnlySCP207.
+            <code>
+             MirrorExtensions.SendCustomSync(player, player.ReferenceHub.networkIdentity, typeof(PlayerEffectsController), (writer) => {
+              writer.WriteUInt64(1ul);                                           // DirtyObjectsBit
+              writer.WriteUInt32(1);                                             // DirtyIndexCount
+              writer.WriteByte((byte)SyncList&lt;byte&gt;.Operation.OP_SET);     // Operations
+              writer.WriteUInt32(17);                                            // EditIndex
+              writer.WriteByte(1);                                               // Value
+             });
+            </code>
+            </example>
         </member>
         <member name="M:Exiled.API.Extensions.MirrorExtensions.EditNetworkObject(Mirror.NetworkIdentity,System.Action{Mirror.NetworkIdentity})">
             <summary>
@@ -2198,6 +2188,28 @@
             <param name="rawNumber">Determines if a number won't be converted to its full pronunciation.</param>
             <returns>Duration (in seconds) of specified message.</returns>
         </member>
+        <member name="T:Exiled.API.Features.Components.CollisionHandler">
+            <summary>
+            Collision Handler for grenades.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Components.CollisionHandler.Owner">
+            <summary>
+            Gets the thrower of the grenade.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Components.CollisionHandler.Grenade">
+            <summary>
+            Gets the grenade itself.
+            </summary>
+        </member>
+        <member name="M:Exiled.API.Features.Components.CollisionHandler.Init(UnityEngine.GameObject,InventorySystem.Items.ThrowableProjectiles.ThrownProjectile)">
+            <summary>
+            Inits the <see cref="T:Exiled.API.Features.Components.CollisionHandler"/> object.
+            </summary>
+            <param name="owner">The grenade owner.</param>
+            <param name="grenade">The grenade component.</param>
+        </member>
         <member name="T:Exiled.API.Features.Door">
             <summary>
             A wrapper class for <see cref="T:Interactables.Interobjects.DoorUtils.DoorVariant"/>.
@@ -2427,11 +2439,13 @@
             </summary>
             <param name="itemBase"><inheritdoc cref="P:Exiled.API.Features.Items.Throwable.Base"/></param>
         </member>
-        <member name="M:Exiled.API.Features.Items.ExplosiveGrenade.#ctor(ItemType)">
+        <member name="M:Exiled.API.Features.Items.ExplosiveGrenade.#ctor(ItemType,Exiled.API.Features.Player)">
             <summary>
             Initializes a new instance of the <see cref="T:Exiled.API.Features.Items.ExplosiveGrenade"/> class.
             </summary>
             <param name="type"><inheritdoc cref="P:Exiled.API.Features.Items.Throwable.Base"/></param>
+            <param name="player"><inheritdoc cref="P:Exiled.API.Features.Items.Item.Owner"/></param>
+            <remarks>The player parameter will always need to be defined if this grenade is custom using Exiled.CustomItems.</remarks>
         </member>
         <member name="P:Exiled.API.Features.Items.ExplosiveGrenade.Projectile">
             <summary>
@@ -2536,11 +2550,13 @@
             </summary>
             <param name="itemBase"><inheritdoc cref="P:Exiled.API.Features.Items.Throwable.Base"/></param>
         </member>
-        <member name="M:Exiled.API.Features.Items.FlashGrenade.#ctor(ItemType)">
+        <member name="M:Exiled.API.Features.Items.FlashGrenade.#ctor(ItemType,Exiled.API.Features.Player)">
             <summary>
             Initializes a new instance of the <see cref="T:Exiled.API.Features.Items.FlashGrenade"/> class.
             </summary>
             <param name="type"><inheritdoc cref="P:Exiled.API.Features.Items.Throwable.Base"/></param>
+            <param name="player"><inheritdoc cref="P:Exiled.API.Features.Items.Item.Owner"/></param>
+            <remarks>The player parameter will always need to be defined if this grenade is custom using Exiled.CustomItems.</remarks>
         </member>
         <member name="P:Exiled.API.Features.Items.FlashGrenade.Projectile">
             <summary>
@@ -2565,6 +2581,31 @@
         <member name="P:Exiled.API.Features.Items.FlashGrenade.FuseTime">
             <summary>
             Gets or sets how long the fuse will last.
+            </summary>
+        </member>
+        <member name="T:Exiled.API.Features.Items.Flashlight">
+            <summary>
+            A wrapped class for <see cref="T:InventorySystem.Items.Flashlight.FlashlightItem"/>.
+            </summary>
+        </member>
+        <member name="M:Exiled.API.Features.Items.Flashlight.#ctor(InventorySystem.Items.ItemBase)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.API.Features.Items.Flashlight"/> class.
+            </summary>
+            <param name="itemBase"><inheritdoc cref="P:Exiled.API.Features.Items.Flashlight.Base"/></param>
+        </member>
+        <member name="M:Exiled.API.Features.Items.Flashlight.#ctor(ItemType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.API.Features.Items.Flashlight"/> class.
+            </summary>
+            <param name="type"><inheritdoc cref="T:System.Type"/></param>
+        </member>
+        <member name="P:Exiled.API.Features.Items.Flashlight.Base">
+            <inheritdoc cref="P:Exiled.API.Features.Items.Item.Base"/>
+        </member>
+        <member name="P:Exiled.API.Features.Items.Flashlight.Active">
+            <summary>
+            Gets or sets a value indicating whether the flashlight is turned on.
             </summary>
         </member>
         <member name="T:Exiled.API.Features.Items.Item">
@@ -2650,7 +2691,7 @@
             A wrapper class for <see cref="T:InventorySystem.Items.Keycards.KeycardItem"/>.
             </summary>
         </member>
-        <member name="M:Exiled.API.Features.Items.Keycard.#ctor(InventorySystem.Items.ItemBase)">
+        <member name="M:Exiled.API.Features.Items.Keycard.#ctor(InventorySystem.Items.Keycards.KeycardItem)">
             <summary>
             Initializes a new instance of the <see cref="T:Exiled.API.Features.Items.Keycard"/> class.
             </summary>
@@ -2667,7 +2708,7 @@
         </member>
         <member name="P:Exiled.API.Features.Items.Keycard.Permissions">
             <summary>
-            Gets or sets the <see cref="T:Interactables.Interobjects.DoorUtils.KeycardPermissions"/> of the keycard.
+            Gets or sets the <see cref="T:Exiled.API.Enums.KeycardPermissions"/> of the keycard.
             </summary>
         </member>
         <member name="T:Exiled.API.Features.Items.MicroHid">
@@ -2821,6 +2862,11 @@
             Gets or sets the <see cref="T:Exiled.API.Structs.RadioRangeSettings"/> for the current <see cref="P:Exiled.API.Features.Items.Radio.Range"/>.
             </summary>
         </member>
+        <member name="M:Exiled.API.Features.Items.Radio.Disable">
+            <summary>
+            Turns off the radio.
+            </summary>
+        </member>
         <member name="T:Exiled.API.Features.Items.Throwable">
             <summary>
             A wrapper class for throwable items.
@@ -2832,11 +2878,13 @@
             </summary>
             <param name="itemBase"><inheritdoc cref="P:Exiled.API.Features.Items.Throwable.Base"/></param>
         </member>
-        <member name="M:Exiled.API.Features.Items.Throwable.#ctor(ItemType)">
+        <member name="M:Exiled.API.Features.Items.Throwable.#ctor(ItemType,Exiled.API.Features.Player)">
             <summary>
             Initializes a new instance of the <see cref="T:Exiled.API.Features.Items.Throwable"/> class.
             </summary>
             <param name="type"><inheritdoc cref="P:Exiled.API.Features.Items.Throwable.Base"/></param>
+            <param name="player"><inheritdoc cref="P:Exiled.API.Features.Items.Item.Owner"/></param>
+            <remarks>The player parameter will always need to be defined if this throwable is custom using Exiled.CustomItems.</remarks>
         </member>
         <member name="P:Exiled.API.Features.Items.Throwable.Base">
             <summary>
@@ -2852,6 +2900,12 @@
             <summary>
             Gets or sets the amount of time it takes to pull the pin.
             </summary>
+        </member>
+        <member name="M:Exiled.API.Features.Items.Throwable.Throw(System.Boolean)">
+            <summary>
+            Throws the item.
+            </summary>
+            <param name="fullForce">Whether to use full or half force.</param>
         </member>
         <member name="T:Exiled.API.Features.Items.Usable">
             <summary>
@@ -3116,11 +3170,12 @@
             Starts the light containment zone decontamination process.
             </summary>
         </member>
-        <member name="M:Exiled.API.Features.Map.TurnOffAllLights(System.Single)">
+        <member name="M:Exiled.API.Features.Map.TurnOffAllLights(System.Single,Exiled.API.Enums.ZoneType)">
             <summary>
             Turns off all lights of the facility.
             </summary>
             <param name="duration">The duration of the blackout.</param>
+            <param name="zoneTypes">The <see cref="T:Exiled.API.Enums.ZoneType"/>s to affect.</param>
         </member>
         <member name="M:Exiled.API.Features.Map.GetCameraById(System.UInt16)">
             <summary>
@@ -3491,7 +3546,7 @@
         </member>
         <member name="P:Exiled.API.Features.Player.NetworkIdentity">
             <summary>
-            Gets the player's <see cref="P:Exiled.API.Features.Player.NetworkIdentity"/>.
+            Gets the player's <see cref="T:Mirror.NetworkIdentity"/>.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsHost">
@@ -3893,13 +3948,6 @@
             <param name="id">The <see cref="T:InventorySystem.Items.ItemBase"/> id to be removed.</param>
             <returns>Returns a value indicating whether the <see cref="T:InventorySystem.Items.ItemBase"/> was removed or not.</returns>
         </member>
-        <member name="M:Exiled.API.Features.Player.RemoveItem(InventorySystem.Items.ItemBase)">
-            <summary>
-            Removes an <see cref="T:InventorySystem.Items.ItemBase"/> from the player's inventory.
-            </summary>
-            <param name="item">The <see cref="T:InventorySystem.Items.ItemBase"/> to be removed.</param>
-            <returns>Returns a value indicating whether the <see cref="T:InventorySystem.Items.ItemBase"/> was removed or not.</returns>
-        </member>
         <member name="M:Exiled.API.Features.Player.RemoveItem(Exiled.API.Features.Items.Item)">
             <summary>
             Removes an <see cref="T:Exiled.API.Features.Items.Item"/> from the player's inventory.
@@ -3933,12 +3981,6 @@
             Disconnects a <see cref="P:Exiled.API.Features.Player.ReferenceHub">player</see>.
             </summary>
             <param name="reason">The disconnection reason.</param>
-        </member>
-        <member name="M:Exiled.API.Features.Player.Heal(System.Single)">
-            <summary>
-            Heals the player by not exceeding the <see cref="P:Exiled.API.Features.Player.MaxHealth"/>.
-            </summary>
-            <param name="amount">The amount of HP given to the player.</param>
         </member>
         <member name="M:Exiled.API.Features.Player.ResetStamina">
             <summary>
@@ -4004,14 +4046,6 @@
             <param name="message">The message to be sent.</param>
             <param name="success">Indicates whether the message should be highlighted as success or not.</param>
             <param name="pluginName">The plugin name.</param>
-        </member>
-        <member name="M:Exiled.API.Features.Player.Broadcast(System.UInt16,System.String,Broadcast.BroadcastFlags)">
-            <summary>
-            A simple broadcast to a <see cref="P:Exiled.API.Features.Player.ReferenceHub"/>. Doesn't get logged to the console and can be monospaced.
-            </summary>
-            <param name="duration">The broadcast duration.</param>
-            <param name="message">The message to be broadcasted.</param>
-            <param name="type">The broadcast type.</param>
         </member>
         <member name="M:Exiled.API.Features.Player.Broadcast(System.UInt16,System.String,Broadcast.BroadcastFlags,System.Boolean)">
             <summary>
@@ -4101,6 +4135,21 @@
             <summary>
             Drops all items in the player's inventory, including all ammo and items.
             </summary>
+        </member>
+        <member name="M:Exiled.API.Features.Player.ThrowGrenade(Exiled.API.Enums.GrenadeType,System.Boolean)">
+            <summary>
+            Causes the player to throw a grenade.
+            </summary>
+            <param name="type">The <see cref="T:Exiled.API.Enums.GrenadeType"/> to be thrown.</param>
+            <param name="fullForce">Whether to throw with full or half force.</param>
+            <returns>The <see cref="T:Exiled.API.Features.Items.Throwable"/> item that was spawned.</returns>
+        </member>
+        <member name="M:Exiled.API.Features.Player.ThrowItem(Exiled.API.Features.Items.Throwable,System.Boolean)">
+            <summary>
+            Throw an item.
+            </summary>
+            <param name="throwable">The <see cref="T:Exiled.API.Features.Items.Throwable"/> to be thrown.</param>
+            <param name="fullForce">Whether to throw with full or half force.</param>
         </member>
         <member name="M:Exiled.API.Features.Player.ShowHint(System.String,System.Single)">
             <summary>
@@ -4330,8 +4379,7 @@
         <member name="P:Exiled.API.Features.Ragdoll.DefaultRagdollOwner">
             <summary>
             Gets the Default <see cref="T:Ragdoll.Info"/>,
-            used in <see cref="M:Exiled.API.Features.Ragdoll.Spawn(RoleType,System.String,PlayerStats.HitInfo,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Vector3,System.Boolean,System.Int32,System.String)"/>
-            and <see cref="M:Exiled.API.Features.Ragdoll.Spawn(Role,Ragdoll.Info,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Vector3,System.Boolean)"/>.
+            used in <see cref="M:Exiled.API.Features.Ragdoll.Spawn(RoleType,System.String,PlayerStats.HitInfo,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Vector3,System.Boolean,System.Int32,System.String)"/>.
             </summary>
             <remarks>
             This value can be modified to change the default Ragdoll's info.
@@ -4878,6 +4926,16 @@
         <member name="P:Exiled.API.Features.Server.FriendlyFire">
             <summary>
             Gets or sets a value indicating whether friendly fire is enabled or not.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Server.PlayerCount">
+            <summary>
+            Gets the number of players currently on the server.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Server.MaxPlayerCount">
+            <summary>
+            Gets or sets the maximum number of players able to be on the server.
             </summary>
         </member>
         <member name="M:Exiled.API.Features.Server.Restart">

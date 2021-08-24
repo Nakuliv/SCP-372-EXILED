@@ -254,6 +254,11 @@
             Gets or sets a value indicating the max shield amount for Scp096.
             </summary>
         </member>
+        <member name="P:Exiled.Events.Config.LogRaCommands">
+            <summary>
+            Gets or sets a value indicating whether to log RA commands.
+            </summary>
+        </member>
         <member name="T:Exiled.Events.EventArgs.ActivatingEventArgs">
             <summary>
             Contains all informations before a player activates SCP-914.
@@ -5575,6 +5580,18 @@
             <summary>
             Patches <see cref="M:PlayableScps.Scp096.Windup(System.Boolean)"/>.
             </summary>
+        </member>
+        <member name="T:Exiled.Events.Patches.Generic.CommandLogging">
+            <summary>
+            Patches <see cref="M:RemoteAdmin.CommandProcessor.ProcessQuery(System.String,CommandSender)"/> for command logging.
+            </summary>
+        </member>
+        <member name="M:Exiled.Events.Patches.Generic.CommandLogging.LogCommand(System.String,CommandSender)">
+            <summary>
+            Logs a command to the RA log file.
+            </summary>
+            <param name="query">The command being logged.</param>
+            <param name="sender">The sender of the command.</param>
         </member>
         <member name="T:Exiled.Events.Patches.Generic.GhostMode">
             <summary>

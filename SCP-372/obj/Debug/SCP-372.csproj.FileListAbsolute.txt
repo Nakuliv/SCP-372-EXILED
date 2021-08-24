@@ -2,9 +2,6 @@ C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\obj\Debug\SCP-372.cs
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\obj\Debug\SCP-372.csproj.CoreCompileInputs.cache
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\SCP-372.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\SCP-372.pdb
-C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Assembly-CSharp-firstpass.dll
-C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Assembly-CSharp.dll
-C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\CommandSystem.Core.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Exiled.API.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Exiled.Bootstrap.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Exiled.CreditTags.dll
@@ -13,9 +10,6 @@ C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Exiled.Eve
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Exiled.Loader.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Exiled.Permissions.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Exiled.Updater.dll
-C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Mirror.dll
-C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngine.CoreModule.dll
-C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngine.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngine.PhysicsModule.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngine.ParticleSystemModule.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngine.AnimationModule.dll
@@ -25,7 +19,6 @@ C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngin
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\DissonanceVoip.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngine.UI.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngine.UIModule.dll
-C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\NorthwoodLib.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Unity.TextMeshPro.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngine.TextRenderingModule.dll
@@ -89,3 +82,8 @@ C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Exiled.Upd
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\obj\Debug\SCP-372.csproj.CopyComplete
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\obj\Debug\SCP-372.dll
 C:\Users\Jakub\Source\Repos\Cwaniaak\SCP-372-EXILED\SCP-372\obj\Debug\SCP-372.pdb
+C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Assembly-CSharp.dll
+C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\NorthwoodLib.dll
+C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Unity.Postprocessing.Runtime.dll
+C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\sc.posteffects.runtime.dll

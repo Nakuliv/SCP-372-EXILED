@@ -339,6 +339,74 @@
             <param name="spawnLocation">The <see cref="T:Exiled.CustomItems.API.SpawnLocation"/>.</param>
             <returns>Returns the door name.</returns>
         </member>
+        <member name="T:Exiled.CustomItems.API.Features.CustomGrenade">
+            <inheritdoc />
+        </member>
+        <member name="P:Exiled.CustomItems.API.Features.CustomGrenade.Type">
+            <summary>
+            Gets or sets the <see cref="T:ItemType"/> to use for this item.
+            </summary>
+        </member>
+        <member name="P:Exiled.CustomItems.API.Features.CustomGrenade.ExplodeOnCollision">
+            <summary>
+            Gets or sets a value indicating whether gets or sets a value that determines if the grenade should explode immediately when contacting any surface.
+            </summary>
+        </member>
+        <member name="P:Exiled.CustomItems.API.Features.CustomGrenade.FuseTime">
+            <summary>
+            Gets or sets a value indicating how long the grenade's fuse time should be.
+            </summary>
+        </member>
+        <member name="P:Exiled.CustomItems.API.Features.CustomGrenade.Tracked">
+            <summary>
+            Gets a value indicating what thrown grenades are currently being tracked.
+            </summary>
+        </member>
+        <member name="M:Exiled.CustomItems.API.Features.CustomGrenade.Throw(UnityEngine.Vector3,System.Single,System.Single,ItemType,Exiled.API.Features.Player)">
+            <summary>
+            Spawns a live grenade object on the map.
+            </summary>
+            <param name="position">The <see cref="T:UnityEngine.Vector3"/> to spawn the grenade at.</param>
+            <param name="force">The amount of force to throw with.</param>
+            <param name="fuseTime">The <see cref="T:System.Single"/> fuse time of the grenade.</param>
+            <param name="grenadeType">The <see cref="T:Exiled.API.Enums.GrenadeType"/> of the grenade to spawn.</param>
+            <param name="player">The <see cref="T:Exiled.API.Features.Player"/> to count as the thrower of the grenade.</param>
+            <returns>The <see cref="T:Exiled.API.Features.Items.Pickup"/> being spawned.</returns>
+        </member>
+        <member name="M:Exiled.CustomItems.API.Features.CustomGrenade.SubscribeEvents">
+            <inheritdoc/>
+        </member>
+        <member name="M:Exiled.CustomItems.API.Features.CustomGrenade.UnsubscribeEvents">
+            <inheritdoc/>
+        </member>
+        <member name="M:Exiled.CustomItems.API.Features.CustomGrenade.OnThrowing(Exiled.Events.EventArgs.ThrowingItemEventArgs)">
+            <summary>
+            Handles tracking thrown custom grenades.
+            </summary>
+            <param name="ev"><see cref="T:Exiled.Events.EventArgs.ThrowingItemEventArgs"/>.</param>
+        </member>
+        <member name="M:Exiled.CustomItems.API.Features.CustomGrenade.OnExploding(Exiled.Events.EventArgs.ExplodingGrenadeEventArgs)">
+            <summary>
+            Handles tracking exploded custom grenades.
+            </summary>
+            <param name="ev"><see cref="T:Exiled.Events.EventArgs.ExplodingGrenadeEventArgs"/>.</param>
+        </member>
+        <member name="M:Exiled.CustomItems.API.Features.CustomGrenade.OnChangingIntoGrenade(Exiled.Events.EventArgs.ChangingIntoGrenadeEventArgs)">
+            <summary>
+            Handles the tracking of custom grenade pickups that are changed into live grenades by a frag grenade explosion.
+            </summary>
+            <param name="ev"><see cref="T:Exiled.Events.EventArgs.ChangingIntoGrenadeEventArgs"/>.</param>
+        </member>
+        <member name="M:Exiled.CustomItems.API.Features.CustomGrenade.OnWaitingForPlayers">
+            <inheritdoc/>
+        </member>
+        <member name="M:Exiled.CustomItems.API.Features.CustomGrenade.Check(InventorySystem.Items.ThrowableProjectiles.ThrownProjectile)">
+            <summary>
+            Checks to see if the grenade is a tracked custom grenade.
+            </summary>
+            <param name="grenade">The <see cref="T:UnityEngine.GameObject"/> of the grenade to check.</param>
+            <returns>True if it is a custom grenade.</returns>
+        </member>
         <member name="T:Exiled.CustomItems.API.Features.CustomItem">
             <summary>
             The Custom Item base class.
@@ -374,24 +442,14 @@
             Gets or sets the list of spawn locations and chances for each one.
             </summary>
         </member>
-        <member name="P:Exiled.CustomItems.API.Features.CustomItem.Durability">
-            <summary>
-            Gets or sets the item durability.
-            </summary>
-        </member>
         <member name="P:Exiled.CustomItems.API.Features.CustomItem.Type">
             <summary>
             Gets or sets the ItemType to use for this item.
             </summary>
         </member>
-        <member name="P:Exiled.CustomItems.API.Features.CustomItem.InsideInventories">
+        <member name="P:Exiled.CustomItems.API.Features.CustomItem.TrackedSerials">
             <summary>
             Gets the list of custom items inside players' inventory being tracked as the current item.
-            </summary>
-        </member>
-        <member name="P:Exiled.CustomItems.API.Features.CustomItem.Spawned">
-            <summary>
-            Gets the list of spawned custom items being tracked as the current item.
             </summary>
         </member>
         <member name="P:Exiled.CustomItems.API.Features.CustomItem.ShouldMessageOnGban">
@@ -509,16 +567,16 @@
             </summary>
             <returns>Returns a value indicating whether the <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> was unregistered or not.</returns>
         </member>
-        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(System.Single,System.Single,System.Single,Exiled.API.Features.Items.Pickup@)">
+        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(System.Single,System.Single,System.Single)">
             <summary>
             Spawns the <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> in a specific location.
             </summary>
             <param name="x">The x coordinate.</param>
             <param name="y">The y coordinate.</param>
             <param name="z">The z coordinate.</param>
-            <param name="pickup">The <see cref="T:InventorySystem.Items.Pickups.ItemPickupBase"/> component of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</param>
+            <returns>The <see cref="T:Exiled.API.Features.Items.Pickup"/> wrapper of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</returns>
         </member>
-        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(System.Single,System.Single,System.Single,Exiled.API.Features.Items.Item,Exiled.API.Features.Items.Pickup@)">
+        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(System.Single,System.Single,System.Single,Exiled.API.Features.Items.Item)">
             <summary>
             Spawns a <see cref="T:Exiled.API.Features.Items.Item"/> as a <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> in a specific location.
             </summary>
@@ -526,37 +584,37 @@
             <param name="y">The y coordinate.</param>
             <param name="z">The z coordinate.</param>
             <param name="item">The <see cref="T:Exiled.API.Features.Items.Item"/> to be spawned as a <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</param>
-            <param name="pickup">The <see cref="T:InventorySystem.Items.Pickups.ItemPickupBase"/> component of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</param>
+            <returns>The <see cref="T:Exiled.API.Features.Items.Pickup"/> wrapper of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</returns>
         </member>
-        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(Exiled.API.Features.Player,Exiled.API.Features.Items.Pickup@)">
+        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(Exiled.API.Features.Player)">
             <summary>
             Spawns the <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> where a specific <see cref="T:Exiled.API.Features.Player"/> is.
             </summary>
             <param name="player">The <see cref="T:Exiled.API.Features.Player"/> position where the <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> will be spawned.</param>
-            <param name="pickup">The <see cref="T:InventorySystem.Items.Pickups.ItemPickupBase"/> component of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</param>
+            <returns>The <see cref="T:Exiled.API.Features.Items.Pickup"/> wrapper of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</returns>
         </member>
-        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(Exiled.API.Features.Player,Exiled.API.Features.Items.Item,Exiled.API.Features.Items.Pickup@)">
+        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(Exiled.API.Features.Player,Exiled.API.Features.Items.Item)">
             <summary>
             Spawns a <see cref="T:Exiled.API.Features.Items.Item"/> as a <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> where a specific <see cref="T:Exiled.API.Features.Player"/> is.
             </summary>
             <param name="player">The <see cref="T:Exiled.API.Features.Player"/> position where the <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> will be spawned.</param>
             <param name="item">The <see cref="T:Exiled.API.Features.Items.Item"/> to be spawned as a <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</param>
-            <param name="pickup">The <see cref="T:InventorySystem.Items.Pickups.ItemPickupBase"/> component of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</param>
+            <returns>The <see cref="T:Exiled.API.Features.Items.Pickup"/> wrapper of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</returns>
         </member>
-        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(UnityEngine.Vector3,Exiled.API.Features.Items.Pickup@)">
+        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(UnityEngine.Vector3)">
             <summary>
             Spawns the <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> in a specific position.
             </summary>
             <param name="position">The <see cref="T:UnityEngine.Vector3"/> where the <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> will be spawned.</param>
-            <param name="pickup">The <see cref="T:InventorySystem.Items.Pickups.ItemPickupBase"/> component of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</param>
+            <returns>The <see cref="T:Exiled.API.Features.Items.Pickup"/> wrapper of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</returns>
         </member>
-        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(UnityEngine.Vector3,Exiled.API.Features.Items.Item,Exiled.API.Features.Items.Pickup@)">
+        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(UnityEngine.Vector3,Exiled.API.Features.Items.Item)">
             <summary>
             Spawns a <see cref="T:Exiled.API.Features.Items.Item"/> as a <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> in a specific position.
             </summary>
             <param name="position">The <see cref="T:UnityEngine.Vector3"/> where the <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> will be spawned.</param>
             <param name="item">The <see cref="T:Exiled.API.Features.Items.Item"/> to be spawned as a <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</param>
-            <param name="pickup">The <see cref="T:InventorySystem.Items.Pickups.ItemPickupBase"/> component of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</param>
+            <returns>The <see cref="T:Exiled.API.Features.Items.Pickup"/> wrapper of the spawned <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/>.</returns>
         </member>
         <member name="M:Exiled.CustomItems.API.Features.CustomItem.Spawn(System.Collections.Generic.IEnumerable{Exiled.CustomItems.API.Spawn.SpawnPoint},System.UInt32)">
             <summary>
@@ -609,13 +667,6 @@
             Checks the specified pickup to see if it is a custom item.
             </summary>
             <param name="pickup">The <see cref="T:Exiled.API.Features.Items.Pickup"/> to check.</param>
-            <returns>True if it is a custom item.</returns>
-        </member>
-        <member name="M:Exiled.CustomItems.API.Features.CustomItem.Check(InventorySystem.Items.ItemBase)">
-            <summary>
-            Checks the specified inventory item to see if it is a custom item.
-            </summary>
-            <param name="item">The <see cref="T:InventorySystem.Items.ItemBase"/> to check.</param>
             <returns>True if it is a custom item.</returns>
         </member>
         <member name="M:Exiled.CustomItems.API.Features.CustomItem.Check(Exiled.API.Features.Items.Item)">
@@ -727,10 +778,7 @@
             Gets or sets a value indicating how big of a clip the weapon will have.
             </summary>
         </member>
-        <member name="P:Exiled.CustomItems.API.Features.CustomWeapon.Durability">
-            <inheritdoc/>
-        </member>
-        <member name="M:Exiled.CustomItems.API.Features.CustomWeapon.Spawn(UnityEngine.Vector3,Exiled.API.Features.Items.Pickup@)">
+        <member name="M:Exiled.CustomItems.API.Features.CustomWeapon.Spawn(UnityEngine.Vector3)">
             <inheritdoc/>
         </member>
         <member name="M:Exiled.CustomItems.API.Features.CustomWeapon.Give(Exiled.API.Features.Player,System.Boolean)">
@@ -916,26 +964,6 @@
         <member name="M:Exiled.CustomItems.Commands.Info.Execute(System.ArraySegment{System.String},CommandSystem.ICommandSender,System.String@)">
             <inheritdoc/>
         </member>
-        <member name="T:Exiled.CustomItems.Commands.List.InsideInventories">
-            <inheritdoc/>
-        </member>
-        <member name="P:Exiled.CustomItems.Commands.List.InsideInventories.Instance">
-            <summary>
-            Gets the command instance.
-            </summary>
-        </member>
-        <member name="P:Exiled.CustomItems.Commands.List.InsideInventories.Command">
-            <inheritdoc/>
-        </member>
-        <member name="P:Exiled.CustomItems.Commands.List.InsideInventories.Aliases">
-            <inheritdoc/>
-        </member>
-        <member name="P:Exiled.CustomItems.Commands.List.InsideInventories.Description">
-            <inheritdoc/>
-        </member>
-        <member name="M:Exiled.CustomItems.Commands.List.InsideInventories.Execute(System.ArraySegment{System.String},CommandSystem.ICommandSender,System.String@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Exiled.CustomItems.Commands.List.List">
             <summary>
             The command to list all installed items.
@@ -981,24 +1009,24 @@
         <member name="M:Exiled.CustomItems.Commands.List.Registered.Execute(System.ArraySegment{System.String},CommandSystem.ICommandSender,System.String@)">
             <inheritdoc/>
         </member>
-        <member name="T:Exiled.CustomItems.Commands.List.Spawned">
+        <member name="T:Exiled.CustomItems.Commands.List.Tracked">
             <inheritdoc/>
         </member>
-        <member name="P:Exiled.CustomItems.Commands.List.Spawned.Instance">
+        <member name="P:Exiled.CustomItems.Commands.List.Tracked.Instance">
             <summary>
             Gets the command instance.
             </summary>
         </member>
-        <member name="P:Exiled.CustomItems.Commands.List.Spawned.Command">
+        <member name="P:Exiled.CustomItems.Commands.List.Tracked.Command">
             <inheritdoc/>
         </member>
-        <member name="P:Exiled.CustomItems.Commands.List.Spawned.Aliases">
+        <member name="P:Exiled.CustomItems.Commands.List.Tracked.Aliases">
             <inheritdoc/>
         </member>
-        <member name="P:Exiled.CustomItems.Commands.List.Spawned.Description">
+        <member name="P:Exiled.CustomItems.Commands.List.Tracked.Description">
             <inheritdoc/>
         </member>
-        <member name="M:Exiled.CustomItems.Commands.List.Spawned.Execute(System.ArraySegment{System.String},CommandSystem.ICommandSender,System.String@)">
+        <member name="M:Exiled.CustomItems.Commands.List.Tracked.Execute(System.ArraySegment{System.String},CommandSystem.ICommandSender,System.String@)">
             <inheritdoc/>
         </member>
         <member name="T:Exiled.CustomItems.Commands.Main">

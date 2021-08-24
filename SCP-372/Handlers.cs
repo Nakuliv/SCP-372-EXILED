@@ -7,6 +7,7 @@ using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using MEC;
+using UnityEngine;
 
 namespace SCP_372
 {
@@ -15,7 +16,7 @@ namespace SCP_372
         public Handlers handlers;
         public HashSet<string> scp372 = new HashSet<string>();
         public int scps372 = 0;
-        public Random rnd = new Random();
+        public System.Random rnd = new System.Random();
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
             if (ev.NewRole == RoleType.ClassD && scps372 < Plugin.Singleton.Config.Max_SCP372_Count && !scp372.Contains(ev.Player.UserId))
@@ -97,7 +98,16 @@ namespace SCP_372
                 });
                 Timing.CallDelayed(1f, () =>
                 {
-                    p.Position = RandomItemSpawner.singleton.posIds.First(x => x.posID == "RandomPistol" && x.DoorTriggerName == "372").position.position;
+                    //p.Position = RandomItemSpawner.singleton.posIds.First(x => x.posID == "RandomPistol" && x.DoorTriggerName == "372").position.position;
+
+                    foreach (Room rm in Map.Rooms)
+                    {
+                        if (rm.Type == RoomType.LczGlassBox)
+                        {
+                            Vector3 scp372spawn = new Vector3(rm.Position.x, rm.Position.y + 1, rm.Position.z + 4);
+                            p.Position = scp372spawn;
+                        }
+                    }
                 });
                 }
         }
