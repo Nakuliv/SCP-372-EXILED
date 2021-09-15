@@ -39,7 +39,7 @@ namespace SCP_372
             scp372.Clear();
         }
 
-            public void OnShooting(ShootingEventArgs ev)
+        public void OnShooting(ShootingEventArgs ev)
         {
             if (scp372.Contains(ev.Shooter.UserId))
             {
@@ -70,6 +70,52 @@ namespace SCP_372
                 });
             }
         }
+
+        public void OnPickingUpItem(PickingUpItemEventArgs ev)
+        {
+            ev.Player.IsInvisible = false;
+            Timing.CallDelayed(0.5f, () =>
+            {
+                ev.Player.IsInvisible = true;
+            });
+        }
+
+        public void OnDroppingItem(DroppingItemEventArgs ev)
+        {
+            ev.Player.IsInvisible = false;
+            Timing.CallDelayed(0.5f, () =>
+            {
+                ev.Player.IsInvisible = true;
+            });
+        }
+
+        public void OnInteractingDoor(InteractingDoorEventArgs ev)
+        {
+            ev.Player.IsInvisible = false;
+            Timing.CallDelayed(0.5f, () =>
+            {
+                ev.Player.IsInvisible = true;
+            });
+        }
+
+        public void OnInteractingElevator(InteractingElevatorEventArgs ev)
+        {
+            ev.Player.IsInvisible = false;
+            Timing.CallDelayed(0.5f, () =>
+            {
+                ev.Player.IsInvisible = true;
+            });
+        }
+
+        public void OnInteractingLocker(InteractingLockerEventArgs ev)
+        {
+            ev.Player.IsInvisible = false;
+            Timing.CallDelayed(0.5f, () =>
+            {
+                ev.Player.IsInvisible = true;
+            });
+        }
+
         public void onPlayerDied(DiedEventArgs ev)
         {
             if (scp372.Contains(ev.Target.UserId))
@@ -79,7 +125,7 @@ namespace SCP_372
             }
         }
 
-            public void Add372(Player p)
+        public void Add372(Player p)
         {
             if (scps372 < Plugin.Singleton.Config.Max_SCP372_Count)
             {
@@ -109,7 +155,7 @@ namespace SCP_372
                         }
                     }
                 });
-                }
+            }
         }
 
         public void OnPlayerHurt(HurtingEventArgs ev)
@@ -121,7 +167,7 @@ namespace SCP_372
             }
         }
 
-            public void Remove372(Player p)
+        public void Remove372(Player p)
         {
             if (scp372.Contains(p.UserId))
             {

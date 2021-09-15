@@ -87,3 +87,7 @@ C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Assembly-C
 C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\NorthwoodLib.dll
 C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Unity.Postprocessing.Runtime.dll
 C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\sc.posteffects.runtime.dll
+C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\Mirror.dll
+C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngine.CoreModule.dll
+C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\UnityEngine.dll
+C:\Users\Jakub\source\repos\Cwaniaak\SCP-372-EXILED\SCP-372\bin\Debug\CommandSystem.Core.dll

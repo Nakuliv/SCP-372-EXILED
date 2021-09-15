@@ -911,34 +911,34 @@
             Used by <see cref="F:ItemType.SCP018"/>.
             </summary>
         </member>
-        <member name="T:Exiled.API.Enums.HidState">
+        <member name="T:Exiled.API.Enums.HotkeyButton">
             <summary>
-            Possible <see cref="T:Exiled.API.Features.Items.MicroHid"/> states.
+            Hotkey button types.
             </summary>
         </member>
-        <member name="F:Exiled.API.Enums.HidState.Idle">
+        <member name="F:Exiled.API.Enums.HotkeyButton.Keycard">
             <summary>
-            Idling and not using energy.
+            The hotkey button for selecting the keycard.
             </summary>
         </member>
-        <member name="F:Exiled.API.Enums.HidState.PoweringUp">
+        <member name="F:Exiled.API.Enums.HotkeyButton.PrimaryFirearm">
             <summary>
-            Powering up and using energy slowly.
+            The hotkey button for selecting the primary firearm.
             </summary>
         </member>
-        <member name="F:Exiled.API.Enums.HidState.PoweringDown">
+        <member name="F:Exiled.API.Enums.HotkeyButton.SecondaryFirearm">
             <summary>
-            Powering down and not using energy.
+            The hotkey button for selecting the secondary firearm.
             </summary>
         </member>
-        <member name="F:Exiled.API.Enums.HidState.Primed">
+        <member name="F:Exiled.API.Enums.HotkeyButton.Medical">
             <summary>
-            Fully powered up and ready to fire.
+            The hotkey button for selecting the medical item.
             </summary>
         </member>
-        <member name="F:Exiled.API.Enums.HidState.Firing">
+        <member name="F:Exiled.API.Enums.HotkeyButton.Grenade">
             <summary>
-            Firing and using energy.
+            The hotkey button for selecting the grenade.
             </summary>
         </member>
         <member name="T:Exiled.API.Enums.KeycardPermissions">
@@ -1410,6 +1410,81 @@
             The Surface.
             </summary>
         </member>
+        <member name="F:Exiled.API.Enums.RoomType.HczStraight">
+            <summary>
+            Heavy Containment |-Shaped Room.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.RoomType.EzTCross">
+            <summary>
+            Entrance T-Shaped Room.
+            </summary>
+        </member>
+        <member name="T:Exiled.API.Enums.ShootingTargetButton">
+            <summary>
+            Possible shooting target buttons.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetButton.IncreaseHp">
+            <summary>
+            Increase HP button.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetButton.DecreaseHp">
+            <summary>
+            Decrease HP button.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetButton.IncreaseResetTime">
+            <summary>
+            Increase reset time button.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetButton.DecreaseResetTime">
+            <summary>
+            Decrease reset time button.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetButton.Reset">
+            <summary>
+            Reset button.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetButton.Remove">
+            <summary>
+            Remove button.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetButton.ToggleSync">
+            <summary>
+            Toggle sync mode button.
+            </summary>
+        </member>
+        <member name="T:Exiled.API.Enums.ShootingTargetType">
+            <summary>
+            Shooting target types present in the game.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetType.Unknown">
+            <summary>
+            Unknown target.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetType.Sport">
+            <summary>
+            Radial sport target.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetType.ClassD">
+            <summary>
+            D-Class target.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.ShootingTargetType.Binary">
+            <summary>
+            Binary target.
+            </summary>
+        </member>
         <member name="T:Exiled.API.Enums.Side">
             <summary>
             In which side a certain <see cref="T:RoleType"/> belongs.
@@ -1710,6 +1785,13 @@
             <param name="type">The <see cref="T:Exiled.API.Enums.AmmoType"/> to convert.</param>
             <returns>The Item type of the specified ammo.</returns>
         </member>
+        <member name="M:Exiled.API.Extensions.ItemExtensions.GetItemType(Exiled.API.Enums.GrenadeType)">
+            <summary>
+            Convert a <see cref="T:Exiled.API.Enums.GrenadeType"/> to a <see cref="T:ItemType"/>.
+            </summary>
+            <param name="type"><inheritdoc cref="T:Exiled.API.Enums.GrenadeType"/></param>
+            <returns><inheritdoc cref="T:ItemType"/></returns>
+        </member>
         <member name="T:Exiled.API.Extensions.LiftTypeExtension">
             <summary>
             Contains an extension method to get <see cref="T:Exiled.API.Enums.ElevatorType"/> from <see cref="T:Lift"/>.
@@ -1948,6 +2030,13 @@
             </summary>
             <param name="roleType">Role.</param>
             <returns><see cref="T:Team"/>.</returns>
+        </member>
+        <member name="M:Exiled.API.Extensions.RoleExtensions.GetLeadingTeam(Team)">
+            <summary>
+            Get the <see cref="T:Exiled.API.Enums.LeadingTeam"/>.
+            </summary>
+            <param name="team">Team.</param>
+            <returns><see cref="T:Exiled.API.Enums.LeadingTeam"/>.</returns>
         </member>
         <member name="M:Exiled.API.Extensions.RoleExtensions.GetRandomSpawnProperties(RoleType)">
             <summary>
@@ -2231,9 +2320,14 @@
             Gets the <see cref="T:Exiled.API.Enums.DoorType"/>.
             </summary>
         </member>
-        <member name="P:Exiled.API.Features.Door.Open">
+        <member name="P:Exiled.API.Features.Door.IsOpen">
             <summary>
             Gets or sets a value indicating whether the door is open.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Door.Position">
+            <summary>
+            Gets or sets the door's position.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Door.AllowsScp106">
@@ -2248,7 +2342,7 @@
         </member>
         <member name="P:Exiled.API.Features.Door.DoorLockType">
             <summary>
-            Gets or sets the door lock type.
+            Gets or the door lock type.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Door.IsBreakable">
@@ -2284,6 +2378,11 @@
         <member name="P:Exiled.API.Features.Door.IgnoredDamageTypes">
             <summary>
             Gets or sets the damage types this door ignores, if it is breakable.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Door.Rotation">
+            <summary>
+            Gets or sets the door's rotation.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Door.Scale">
@@ -2323,6 +2422,17 @@
             Makes the door play a beep sound.
             </summary>
             <param name="beep">The beep sound to play.</param>
+        </member>
+        <member name="M:Exiled.API.Features.Door.ChangeLock(Exiled.API.Enums.DoorLockType)">
+            <summary>
+            Locks the door with the given lock type.
+            </summary>
+            <param name="lockType"><inheritdoc cref="P:Exiled.API.Features.Door.DoorLockType"/></param>
+        </member>
+        <member name="M:Exiled.API.Features.Door.Unlock">
+            <summary>
+            Unlocks the door.
+            </summary>
         </member>
         <member name="M:Exiled.API.Features.Door.RegisterDoorTypesOnLevelLoad">
             <summary>
@@ -2447,11 +2557,6 @@
             <param name="player"><inheritdoc cref="P:Exiled.API.Features.Items.Item.Owner"/></param>
             <remarks>The player parameter will always need to be defined if this grenade is custom using Exiled.CustomItems.</remarks>
         </member>
-        <member name="P:Exiled.API.Features.Items.ExplosiveGrenade.Projectile">
-            <summary>
-            Gets the <see cref="T:InventorySystem.Items.ThrowableProjectiles.ExplosionGrenade"/> for this item.
-            </summary>
-        </member>
         <member name="P:Exiled.API.Features.Items.ExplosiveGrenade.MaxRadius">
             <summary>
             Gets or sets the maximum radius of the grenade.
@@ -2482,6 +2587,18 @@
             Gets or sets how long the fuse will last.
             </summary>
         </member>
+        <member name="P:Exiled.API.Features.Items.ExplosiveGrenade.GrenadeToItem">
+            <summary>
+            Gets or sets all the currently known <see cref="T:InventorySystem.Items.ThrowableProjectiles.EffectGrenade"/>:<see cref="T:Exiled.API.Features.Items.Throwable"/> items.
+            </summary>
+        </member>
+        <member name="M:Exiled.API.Features.Items.ExplosiveGrenade.SpawnActive(UnityEngine.Vector3,Exiled.API.Features.Player)">
+            <summary>
+            Spawns an active grenade on the map at the specified location.
+            </summary>
+            <param name="position">The location to spawn the grenade.</param>
+            <param name="owner">Optional: The <see cref="T:Exiled.API.Features.Player"/> owner of the grenade.</param>
+        </member>
         <member name="T:Exiled.API.Features.Items.Firearm">
             <summary>
             A wrapper class for <see cref="T:InventorySystem.Items.Firearms.Firearm"/>.
@@ -2504,22 +2621,32 @@
         </member>
         <member name="P:Exiled.API.Features.Items.Firearm.Ammo">
             <summary>
-            Gets or sets the amount of ammo in the weapon.
+            Gets or sets the amount of ammo in the firearm.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Items.Firearm.MaxAmmo">
             <summary>
-            gets the max ammo for this firearm.
+            Gets the max ammo for this firearm.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Items.Firearm.AmmoType">
             <summary>
-            Gets the <see cref="P:Exiled.API.Features.Items.Firearm.AmmoType"/> of the Firearm.
+            Gets the <see cref="P:Exiled.API.Features.Items.Firearm.AmmoType"/> of the firearm.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Items.Firearm.DamageType">
             <summary>
             Gets the <see cref="T:DamageTypes.DamageType"/> of the firearm.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Items.Firearm.Aiming">
+            <summary>
+            Gets a value indicating whether the firearm is being aimed.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Items.Firearm.FlashlightEnabled">
+            <summary>
+            Gets a value indicating whether the firearm's flashlight module is enabled.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Items.Firearm.Attachments">
@@ -2558,11 +2685,6 @@
             <param name="player"><inheritdoc cref="P:Exiled.API.Features.Items.Item.Owner"/></param>
             <remarks>The player parameter will always need to be defined if this grenade is custom using Exiled.CustomItems.</remarks>
         </member>
-        <member name="P:Exiled.API.Features.Items.FlashGrenade.Projectile">
-            <summary>
-            Gets the <see cref="T:InventorySystem.Items.ThrowableProjectiles.ExplosionGrenade"/> for this item.
-            </summary>
-        </member>
         <member name="P:Exiled.API.Features.Items.FlashGrenade.BlindCurve">
             <summary>
             Gets or sets the <see cref="T:UnityEngine.AnimationCurve"/> for determining how long the <see cref="F:Exiled.API.Enums.EffectType.Blinded"/> effect will last.
@@ -2582,6 +2704,18 @@
             <summary>
             Gets or sets how long the fuse will last.
             </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Items.FlashGrenade.GrenadeToItem">
+            <summary>
+            Gets or sets all the currently known <see cref="T:InventorySystem.Items.ThrowableProjectiles.EffectGrenade"/>:<see cref="T:Exiled.API.Features.Items.Throwable"/> items.
+            </summary>
+        </member>
+        <member name="M:Exiled.API.Features.Items.FlashGrenade.SpawnActive(UnityEngine.Vector3,Exiled.API.Features.Player)">
+            <summary>
+            Spawns an active grenade on the map at the specified location.
+            </summary>
+            <param name="position">The location to spawn the grenade.</param>
+            <param name="owner">Optional: The <see cref="T:Exiled.API.Features.Player"/> owner of the grenade.</param>
         </member>
         <member name="T:Exiled.API.Features.Items.Flashlight">
             <summary>
@@ -2637,7 +2771,7 @@
         </member>
         <member name="P:Exiled.API.Features.Items.Item.Serial">
             <summary>
-            Gets the unique serial number for the item.
+            Gets or sets the unique serial number for the item.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Items.Item.Scale">
@@ -2740,7 +2874,7 @@
         </member>
         <member name="P:Exiled.API.Features.Items.MicroHid.State">
             <summary>
-            Gets or sets the <see cref="T:Exiled.API.Enums.HidState"/>.
+            Gets or sets the <see cref="T:InventorySystem.Items.MicroHID.HidState"/>.
             </summary>
         </member>
         <member name="M:Exiled.API.Features.Items.MicroHid.Fire">
@@ -2852,6 +2986,11 @@
         <member name="P:Exiled.API.Features.Items.Radio.Base">
             <inheritdoc cref="P:Exiled.API.Features.Items.Item.Base"/>
         </member>
+        <member name="P:Exiled.API.Features.Items.Radio.BatteryLevel">
+            <summary>
+            Gets or sets the percentage of the radio's battery.
+            </summary>
+        </member>
         <member name="P:Exiled.API.Features.Items.Radio.Range">
             <summary>
             Gets or sets the current <see cref="T:Exiled.API.Enums.RadioRange"/>.
@@ -2889,11 +3028,6 @@
         <member name="P:Exiled.API.Features.Items.Throwable.Base">
             <summary>
             Gets the <see cref="T:InventorySystem.Items.ThrowableProjectiles.ThrowableItem"/> base for this item.
-            </summary>
-        </member>
-        <member name="P:Exiled.API.Features.Items.Throwable.Projectile">
-            <summary>
-            Gets the <see cref="T:InventorySystem.Items.ThrowableProjectiles.ThrownProjectile"/> for this item.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Items.Throwable.PinPullTime">
@@ -3330,7 +3464,7 @@
         </member>
         <member name="P:Exiled.API.Features.Player.HasHint">
             <summary>
-            Gets a value indicating whether or not the player is viewing a hint.
+            Gets a value indicating whether the player is viewing a hint.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.Radio">
@@ -3383,7 +3517,7 @@
         </member>
         <member name="P:Exiled.API.Features.Player.IsVerified">
             <summary>
-            Gets a value indicating whether or not the player is verified.
+            Gets a value indicating whether the player is verified.
             </summary>
             <remarks>
             This is always false if online_mode is set to false.
@@ -3418,17 +3552,17 @@
         </member>
         <member name="P:Exiled.API.Features.Player.IsInvisible">
             <summary>
-            Gets or sets a value indicating whether or not the player is invisible.
+            Gets or sets a value indicating whether the player is invisible.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.DoNotTrack">
             <summary>
-            Gets a value indicating whether or not the player can be tracked.
+            Gets a value indicating whether the player can be tracked.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsConnected">
             <summary>
-            Gets a value indicating whether or not the player is connected to the server.
+            Gets a value indicating whether the player is connected to the server.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.TargetGhostsHashSet">
@@ -3438,12 +3572,12 @@
         </member>
         <member name="P:Exiled.API.Features.Player.RemoteAdminAccess">
             <summary>
-            Gets a value indicating whether or not the player has Remote Admin access.
+            Gets a value indicating whether the player has Remote Admin access.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsOverwatchEnabled">
             <summary>
-            Gets or sets a value indicating whether or not the player's overwatch is enabled.
+            Gets or sets a value indicating whether the player's overwatch is enabled.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.Cuffer">
@@ -3473,6 +3607,11 @@
             Gets the player's <see cref="P:Exiled.API.Features.Player.Team"/>.
             </summary>
         </member>
+        <member name="P:Exiled.API.Features.Player.LeadingTeam">
+            <summary>
+            Gets the player's <see cref="P:Exiled.API.Features.Player.LeadingTeam"/>.
+            </summary>
+        </member>
         <member name="P:Exiled.API.Features.Player.Role">
             <summary>
             Gets or sets the player's <see cref="T:RoleType"/>.
@@ -3485,12 +3624,22 @@
         </member>
         <member name="P:Exiled.API.Features.Player.IsCuffed">
             <summary>
-            Gets a value indicating whether or not the player is cuffed. Note: players can be cuffed without another player being the cuffer.
+            Gets a value indicating whether the player is cuffed. Note: players can be cuffed without another player being the cuffer.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsReloading">
             <summary>
-            Gets a value indicating whether or not the player is reloading a weapon.
+            Gets a value indicating whether the player is reloading a weapon.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Player.IsAimingDownWeapon">
+            <summary>
+            Gets a value indicating whether the player is aiming with a weapon.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Player.HasFlashlightModuleEnabled">
+            <summary>
+            Gets a value indicating whether the player has enabled weapon's flashlight module.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.MoveState">
@@ -3505,22 +3654,22 @@
         </member>
         <member name="P:Exiled.API.Features.Player.IsSprinting">
             <summary>
-            Gets a value indicating whether or not the player is sprinting.
+            Gets a value indicating whether the player is sprinting.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsWalking">
             <summary>
-            Gets a value indicating whether or not the player is walking.
+            Gets a value indicating whether the player is walking.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsSneaking">
             <summary>
-            Gets a value indicating whether or not the player is sneaking.
+            Gets a value indicating whether the player is sneaking.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsJumping">
             <summary>
-            Gets a value indicating whether or not the player is jumping.
+            Gets a value indicating whether the player is jumping.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IPAddress">
@@ -3530,7 +3679,7 @@
         </member>
         <member name="P:Exiled.API.Features.Player.NoClipEnabled">
             <summary>
-            Gets or sets a value indicating whether or not the <see cref="T:Exiled.API.Features.Player"/> has No-clip enabled.
+            Gets or sets a value indicating whether the <see cref="T:Exiled.API.Features.Player"/> has No-clip enabled.
             </summary>
             <returns><see cref="T:System.Boolean"/> indicating status.</returns>
         </member>
@@ -3551,33 +3700,39 @@
         </member>
         <member name="P:Exiled.API.Features.Player.IsHost">
             <summary>
-            Gets a value indicating whether or not the player is the host.
+            Gets a value indicating whether the player is the host.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsAlive">
             <summary>
-            Gets a value indicating whether or not the player is alive.
+            Gets a value indicating whether the player is alive.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsDead">
             <summary>
-            Gets a value indicating whether or not the player is dead.
+            Gets a value indicating whether the player is dead.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsNTF">
             <summary>
-            Gets a value indicating whether or not the player's <see cref="T:RoleType"/> is any NTF rank.
+            Gets a value indicating whether the player's <see cref="T:RoleType"/> is any NTF rank.
+            Equivalent to checking the player's <see cref="P:Exiled.API.Features.Player.Team"/>.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Player.IsCHI">
+            <summary>
+            Gets a value indicating whether or not the player's <see cref="T:RoleType"/> is any Chaos rank.
             Equivalent to checking the player's <see cref="P:Exiled.API.Features.Player.Team"/>.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsScp">
             <summary>
-            Gets a value indicating whether or not the player's <see cref="T:RoleType"/> is any SCP rank.
+            Gets a value indicating whether the player's <see cref="T:RoleType"/> is any SCP rank.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsHuman">
             <summary>
-            Gets a value indicating whether or not the player's <see cref="T:RoleType"/> is any human rank (except the tutorial role).
+            Gets a value indicating whether the player's <see cref="T:RoleType"/> is any human rank (except the tutorial role).
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.Camera">
@@ -3593,7 +3748,7 @@
         </member>
         <member name="P:Exiled.API.Features.Player.IsFriendlyFireEnabled">
             <summary>
-            Gets or sets a value indicating whether the player friendly fire is enabled or not.
+            Gets or sets a value indicating whether the player friendly fire is enabled.
             This only isAllowed to deal friendly fire damage, not take friendly fire damage.
             </summary>
         </member>
@@ -3604,32 +3759,32 @@
         </member>
         <member name="P:Exiled.API.Features.Player.IsBypassModeEnabled">
             <summary>
-            Gets or sets a value indicating whether the player's bypass mode is enabled or not.
+            Gets or sets a value indicating whether the player's bypass mode is enabled.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsMuted">
             <summary>
-            Gets or sets a value indicating whether or not the player is muted.
+            Gets or sets a value indicating whether the player is muted.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsIntercomMuted">
             <summary>
-            Gets or sets a value indicating whether or not the player is intercom muted.
+            Gets or sets a value indicating whether the player is intercom muted.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsVoiceChatting">
             <summary>
-            Gets a value indicating whether or not the player is voice chatting.
+            Gets a value indicating whether the player is voice chatting.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsTransmitting">
             <summary>
-            Gets a value indicating whether or not the player is transmitting.
+            Gets a value indicating whether the player is transmitting.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsGodModeEnabled">
             <summary>
-            Gets or sets a value indicating whether or not the player has godmode enabled.
+            Gets or sets a value indicating whether the player has godmode enabled.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.UnitName">
@@ -3729,7 +3884,7 @@
         </member>
         <member name="P:Exiled.API.Features.Player.IsStaffBypassEnabled">
             <summary>
-            Gets a value indicating whether the staff bypass is enabled or not.
+            Gets a value indicating whether the staff bypass is enabled.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.GroupName">
@@ -3745,6 +3900,11 @@
         <member name="P:Exiled.API.Features.Player.Zone">
             <summary>
             Gets the current zone the player is in.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Player.ActiveEffects">
+            <summary>
+            Gets all currently active <see cref="T:CustomPlayerEffects.PlayerEffect">status effects</see>.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.Group">
@@ -3769,12 +3929,22 @@
         </member>
         <member name="P:Exiled.API.Features.Player.BadgeHidden">
             <summary>
-            Gets or sets a value indicating whether or not the player's badge is hidden.
+            Gets or sets a value indicating whether the player's badge is hidden.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Player.IsNorthwoodStaff">
+            <summary>
+            Gets a value indicating whether or not a player is Northwood staff.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Player.IsGlobalModerator">
+            <summary>
+            Gets a value indicating whether or not a player is a global moderator.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsInPocketDimension">
             <summary>
-            Gets a value indicating whether or not the player is in the pocket dimension.
+            Gets a value indicating whether the player is in the pocket dimension.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.IsUsingStamina">
@@ -3795,7 +3965,7 @@
         </member>
         <member name="P:Exiled.API.Features.Player.CanSendInputs">
             <summary>
-            Gets or sets a value indicating whether or not the player can send inputs.
+            Gets or sets a value indicating whether the player can send inputs.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Player.UnverifiedPlayers">
@@ -3884,6 +4054,7 @@
             <summary>
             Forces the player to reload their current weapon.
             </summary>
+            <exception cref="T:System.InvalidOperationException">If the item is not a firearm.</exception>
         </member>
         <member name="M:Exiled.API.Features.Player.TryGetItem(System.UInt16,InventorySystem.Items.ItemBase@)">
             <summary>
@@ -3912,7 +4083,7 @@
             </summary>
             <param name="newRole">The new <see cref="T:RoleType"/> to be set.</param>
             <param name="reason">The <see cref="T:Exiled.API.Enums.SpawnReason"/> defining why the player's role was changed.</param>
-            <param name="lite">Indicates whether it should preserve the position and inventory after changing the role or not.</param>
+            <param name="lite">Indicates whether it should preserve the position and inventory after changing the role.</param>
         </member>
         <member name="M:Exiled.API.Features.Player.Broadcast(Exiled.API.Features.Broadcast,System.Boolean)">
             <summary>
@@ -3929,7 +4100,7 @@
         </member>
         <member name="M:Exiled.API.Features.Player.HasItem(ItemType)">
             <summary>
-            Indicates whether or not the player has an item.
+            Indicates whether the player has an item.
             </summary>
             <param name="item">The item to search for.</param>
             <returns>true, if the player has it; otherwise, false.</returns>
@@ -3941,25 +4112,19 @@
             <param name="item">The item to search for.</param>
             <returns>How many items of that <see cref="T:ItemType"/> the player has.</returns>
         </member>
-        <member name="M:Exiled.API.Features.Player.RemoveItem(System.UInt16)">
-            <summary>
-            Removes an <see cref="T:InventorySystem.Items.ItemBase"/> from the player's inventory.
-            </summary>
-            <param name="id">The <see cref="T:InventorySystem.Items.ItemBase"/> id to be removed.</param>
-            <returns>Returns a value indicating whether the <see cref="T:InventorySystem.Items.ItemBase"/> was removed or not.</returns>
-        </member>
-        <member name="M:Exiled.API.Features.Player.RemoveItem(Exiled.API.Features.Items.Item)">
+        <member name="M:Exiled.API.Features.Player.RemoveItem(Exiled.API.Features.Items.Item,System.Boolean)">
             <summary>
             Removes an <see cref="T:Exiled.API.Features.Items.Item"/> from the player's inventory.
             </summary>
             <param name="item">The <see cref="T:Exiled.API.Features.Items.Item"/> to remove.</param>
-            <returns>A value indicating whether the <see cref="T:Exiled.API.Features.Items.Item"/> was removed or not.</returns>
+            <param name="destroy">Whether or not to destroy the item.</param>
+            <returns>A value indicating whether the <see cref="T:Exiled.API.Features.Items.Item"/> was removed.</returns>
         </member>
         <member name="M:Exiled.API.Features.Player.RemoveHeldItem">
             <summary>
             Removes the held <see cref="T:InventorySystem.Items.ItemBase"/> from the player's inventory.
             </summary>
-            <returns>Returns a value indicating whether the <see cref="T:InventorySystem.Items.ItemBase"/> was removed or not.</returns>
+            <returns>Returns a value indicating whether the <see cref="T:InventorySystem.Items.ItemBase"/> was removed.</returns>
         </member>
         <member name="M:Exiled.API.Features.Player.SendConsoleMessage(System.String,System.String)">
             <summary>
@@ -3995,7 +4160,7 @@
             <param name="damageType">The damage type.</param>
             <param name="attackerName">The attacker name.</param>
             <param name="attackerId">The attacker player id.</param>
-            <param name="isAttackerNameCustom">Indicates whether the attacker name that will be shown by looking at the ragdoll is custom or not.</param>
+            <param name="isAttackerNameCustom">Indicates whether the attacker name that will be shown by looking at the ragdoll is custom.</param>
         </member>
         <member name="M:Exiled.API.Features.Player.Hurt(System.Single,Exiled.API.Features.Player,DamageTypes.DamageType)">
             <summary>
@@ -4010,7 +4175,7 @@
             Heals the player.
             </summary>
             <param name="amount">The amount of health to heal.</param>
-            <param name="overrideMaxHealth">Whether or not healing should exceed their max health.</param>
+            <param name="overrideMaxHealth">Whether healing should exceed their max health.</param>
         </member>
         <member name="M:Exiled.API.Features.Player.Kill(DamageTypes.DamageType)">
             <summary>
@@ -4044,7 +4209,7 @@
             Sends a message to the player's Remote Admin console.
             </summary>
             <param name="message">The message to be sent.</param>
-            <param name="success">Indicates whether the message should be highlighted as success or not.</param>
+            <param name="success">Indicates whether the message should be highlighted as success.</param>
             <param name="pluginName">The plugin name.</param>
         </member>
         <member name="M:Exiled.API.Features.Player.Broadcast(System.UInt16,System.String,Broadcast.BroadcastFlags,System.Boolean)">
@@ -4094,11 +4259,12 @@
             <param name="pickup">The <see cref="T:Exiled.API.Features.Items.Pickup"/> of the item to be added.</param>
             <returns>The <see cref="T:Exiled.API.Features.Items.Item"/> that was added.</returns>
         </member>
-        <member name="M:Exiled.API.Features.Player.AddItem(InventorySystem.Items.ItemBase)">
+        <member name="M:Exiled.API.Features.Player.AddItem(InventorySystem.Items.ItemBase,Exiled.API.Features.Items.Item)">
             <summary>
             Add an item to the player's inventory.
             </summary>
             <param name="itemBase">The item to be added.</param>
+            <param name="item">The <see cref="T:Exiled.API.Features.Items.Item"/> object of the item.</param>
             <returns>The item that was added.</returns>
         </member>
         <member name="M:Exiled.API.Features.Player.AddItem(Exiled.API.Features.Items.Item,System.Int32)">
@@ -4120,16 +4286,17 @@
             </summary>
             <param name="newItems">The new items that have to be added to the inventory.</param>
         </member>
-        <member name="M:Exiled.API.Features.Player.ResetInventory(System.Collections.Generic.List{InventorySystem.Items.ItemBase})">
+        <member name="M:Exiled.API.Features.Player.ResetInventory(System.Collections.Generic.List{Exiled.API.Features.Items.Item})">
             <summary>
             Resets the player's inventory to the provided list of items, clearing any items it already possess.
             </summary>
             <param name="newItems">The new items that have to be added to the inventory.</param>
         </member>
-        <member name="M:Exiled.API.Features.Player.ClearInventory">
+        <member name="M:Exiled.API.Features.Player.ClearInventory(System.Boolean)">
             <summary>
             Clears the player's inventory, including all ammo and items.
             </summary>
+            <param name="destroy">Whether ot not to fully destroy the old items.</param>
         </member>
         <member name="M:Exiled.API.Features.Player.DropItems">
             <summary>
@@ -4174,10 +4341,10 @@
         </member>
         <member name="M:Exiled.API.Features.Player.GetEffectActive``1">
             <summary>
-            Gets a <see cref="T:System.Boolean"/> describing whether or not the given <see cref="T:CustomPlayerEffects.PlayerEffect">status effect</see> is currently enabled.
+            Gets a <see cref="T:System.Boolean"/> describing whether the given <see cref="T:CustomPlayerEffects.PlayerEffect">status effect</see> is currently enabled.
             </summary>
             <typeparam name="T">The <see cref="T:CustomPlayerEffects.PlayerEffect"/> to check.</typeparam>
-            <returns>A <see cref="T:System.Boolean"/> determining whether or not the player effect is active.</returns>
+            <returns>A <see cref="T:System.Boolean"/> determining whether the player effect is active.</returns>
         </member>
         <member name="M:Exiled.API.Features.Player.DisableAllEffects">
             <summary>
@@ -4219,7 +4386,7 @@
             <param name="effect">The name of the <see cref="T:CustomPlayerEffects.PlayerEffect"/> to enable.</param>
             <param name="duration">The amount of time the effect will be active for.</param>
             <param name="addDurationIfActive">If the effect is already active, setting to true will add this duration onto the effect.</param>
-            <returns>A bool indicating whether or not the effect was valid and successfully enabled.</returns>
+            <returns>A bool indicating whether the effect was valid and successfully enabled.</returns>
         </member>
         <member name="M:Exiled.API.Features.Player.EnableEffect(Exiled.API.Enums.EffectType,System.Single,System.Boolean)">
             <summary>
@@ -4242,7 +4409,7 @@
             </summary>
             <param name="effect">The <see cref="T:Exiled.API.Enums.EffectType"/>.</param>
             <param name="playerEffect">The <see cref="T:CustomPlayerEffects.PlayerEffect"/>.</param>
-            <returns>A bool indicating whether or not the <paramref name="playerEffect"/> was successfully gotten.</returns>
+            <returns>A bool indicating whether the <paramref name="playerEffect"/> was successfully gotten.</returns>
         </member>
         <member name="M:Exiled.API.Features.Player.GetEffectIntensity``1">
             <summary>
@@ -4690,6 +4857,11 @@
             Gets or sets the intensity of the lights in the room.
             </summary>
         </member>
+        <member name="P:Exiled.API.Features.Room.Color">
+            <summary>
+            Gets or sets the color of the room's lights by changing the warhead color.
+            </summary>
+        </member>
         <member name="P:Exiled.API.Features.Room.Cameras">
             <summary>
             Gets a <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Camera079"/> in the <see cref="T:Exiled.API.Features.Room"/>.
@@ -4705,6 +4877,23 @@
             Flickers the room's lights off for a duration.
             </summary>
             <param name="duration">Duration in seconds.</param>
+        </member>
+        <member name="M:Exiled.API.Features.Room.LockDown(System.Single,Exiled.API.Enums.DoorLockType)">
+            <summary>
+            Locks all the doors in the room.
+            </summary>
+            <param name="duration">Duration in seconds.</param>
+            <param name="lockType">DoorLockType of the lockdown.</param>
+        </member>
+        <member name="M:Exiled.API.Features.Room.UnlockAll">
+            <summary>
+            Unlocks all the doors in the room.
+            </summary>
+        </member>
+        <member name="M:Exiled.API.Features.Room.ResetColor">
+            <summary>
+            Resets the room color to default.
+            </summary>
         </member>
         <member name="M:Exiled.API.Features.Room.CreateComponent(UnityEngine.GameObject)">
             <summary>
@@ -4970,6 +5159,103 @@
             </summary>
             <param name="command">The command to be run.</param>
             <param name="sender">The <see cref="T:CommandSender"/> running the command.</param>
+        </member>
+        <member name="T:Exiled.API.Features.ShootingTarget">
+            <summary>
+            A wrapper class for <see cref="T:InventorySystem.Items.Firearms.Utilities.ShootingTarget"/>.
+            </summary>
+        </member>
+        <member name="M:Exiled.API.Features.ShootingTarget.#ctor(InventorySystem.Items.Firearms.Utilities.ShootingTarget)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.API.Features.ShootingTarget"/> class.
+            </summary>
+            <param name="target"><inheritdoc cref="P:Exiled.API.Features.ShootingTarget.Base"/></param>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.Base">
+            <summary>
+            Gets the base-game <see cref="T:InventorySystem.Items.Firearms.Utilities.ShootingTarget"/> for this target.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.VerificationRule">
+            <summary>
+            Gets the <see cref="T:Interactables.Verification.IVerificationRule"/> for this target.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.Position">
+            <summary>
+            Gets the position of the target.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.BullseyePosition">
+            <summary>
+            Gets the bullseye location of the target.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.BullseyeRadius">
+            <summary>
+            Gets the bullseye radius of the target.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.MaxHealth">
+            <summary>
+            Gets or sets the max health of the target.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.Health">
+            <summary>
+            Gets or sets the remaining health of the target.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.AutoResetTime">
+            <summary>
+            Gets or sets the remaining health of the target.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.Scale">
+            <summary>
+            Gets or sets the size scale of the target.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.IsSynced">
+            <summary>
+            Gets or sets a value indicating whether or not the target is in sync mode.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.ShootingTarget.Type">
+            <summary>
+            Gets the type of the target.
+            </summary>
+        </member>
+        <member name="M:Exiled.API.Features.ShootingTarget.Get(InventorySystem.Items.Firearms.Utilities.ShootingTarget)">
+            <summary>
+            Gets the ShootingTarget object associated with a specific <see cref="T:InventorySystem.Items.Firearms.Utilities.ShootingTarget"/>, or creates a new one if there isn't one.
+            </summary>
+            <param name="shootingTarget"><inheritdoc cref="P:Exiled.API.Features.ShootingTarget.Base"/></param>
+            <returns><inheritdoc cref="T:Exiled.API.Features.ShootingTarget"/></returns>
+        </member>
+        <member name="M:Exiled.API.Features.ShootingTarget.Spawn(Exiled.API.Enums.ShootingTargetType,UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary>
+            Spawns a new shooting target of the given type at the given position and rotation.
+            </summary>
+            <param name="type">The <see cref="T:Exiled.API.Enums.ShootingTargetType"/> of the target.</param>
+            <param name="position">The position of the target.</param>
+            <param name="rotation">The rotation of the target.</param>
+            <returns>The <see cref="T:Exiled.API.Features.ShootingTarget"/> object associated with the <see cref="T:InventorySystem.Items.Firearms.Utilities.ShootingTarget"/>.</returns>
+        </member>
+        <member name="M:Exiled.API.Features.ShootingTarget.Clear">
+            <summary>
+            Clears the target and resets its health.
+            </summary>
+        </member>
+        <member name="M:Exiled.API.Features.ShootingTarget.Damage(System.Single,InventorySystem.Items.IDamageDealer,Footprinting.Footprint,UnityEngine.Vector3)">
+            <summary>
+            Damages the target with the given damage, item, footprint, and hit location.
+            </summary>
+            <param name="damage">The damage to be dealt.</param>
+            <param name="item">The <see cref="T:InventorySystem.Items.IDamageDealer"/> dealing the damage.</param>
+            <param name="attackerFootprint">The <see cref="T:Footprinting.Footprint"/> of the attacker.</param>
+            <param name="exactHit">The exact location of the hit.</param>
+            <returns>Whether or not the damage was sent.</returns>
         </member>
         <member name="T:Exiled.API.Features.Warhead">
             <summary>

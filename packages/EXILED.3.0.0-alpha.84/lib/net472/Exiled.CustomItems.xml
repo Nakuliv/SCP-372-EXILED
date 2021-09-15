@@ -306,6 +306,14 @@
             The names of spawn locations who's positions are on the opposite side of their door, and must be corrected.
             </summary>
         </member>
+        <member name="M:Exiled.CustomItems.API.Extensions.ResetInventory(Exiled.API.Features.Player,System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Resets the player's inventory to the provided list of items and/or customitems names, clearing any items it already possess.
+            </summary>
+            <param name="player">The player to which items will be given.</param>
+            <param name="newItems">The new items that have to be added to the inventory.</param>
+            <param name="displayMessage">Indicates a value whether <see cref="M:Exiled.CustomItems.API.Features.CustomItem.ShowPickedUpMessage(Exiled.API.Features.Player)"/> will be called when the player receives the <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> or not.</param>
+        </member>
         <member name="M:Exiled.CustomItems.API.Extensions.GetDoor(Exiled.CustomItems.API.SpawnLocation)">
             <summary>
             Tries to get the <see cref="T:UnityEngine.Transform"/> of the door used for a specific <see cref="T:Exiled.CustomItems.API.SpawnLocation"/>.
@@ -361,6 +369,13 @@
             <summary>
             Gets a value indicating what thrown grenades are currently being tracked.
             </summary>
+        </member>
+        <member name="M:Exiled.CustomItems.API.Features.CustomGrenade.Give(Exiled.API.Features.Player,System.Boolean)">
+            <summary>
+            Gives the <see cref="T:Exiled.CustomItems.API.Features.CustomItem"/> to a player.
+            </summary>
+            <param name="player">The <see cref="T:Exiled.API.Features.Player"/> who will receive the item.</param>
+            <param name="displayMessage">Indicates whether or not <see cref="M:Exiled.CustomItems.API.Features.CustomItem.ShowPickedUpMessage(Exiled.API.Features.Player)"/> will be called when the player receives the item.</param>
         </member>
         <member name="M:Exiled.CustomItems.API.Features.CustomGrenade.Throw(UnityEngine.Vector3,System.Single,System.Single,ItemType,Exiled.API.Features.Player)">
             <summary>
@@ -779,6 +794,9 @@
             </summary>
         </member>
         <member name="M:Exiled.CustomItems.API.Features.CustomWeapon.Spawn(UnityEngine.Vector3)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Exiled.CustomItems.API.Features.CustomWeapon.Spawn(UnityEngine.Vector3,Exiled.API.Features.Items.Item)">
             <inheritdoc/>
         </member>
         <member name="M:Exiled.CustomItems.API.Features.CustomWeapon.Give(Exiled.API.Features.Player,System.Boolean)">
