@@ -14,16 +14,28 @@ namespace SCP_372
     public class Handlers
     {
         public Handlers handlers;
-        public HashSet<string> scp372 = new HashSet<string>();
-        public int scps372 = 0;
+        public static HashSet<string> scp372 = new HashSet<string>();
         public System.Random rnd = new System.Random();
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (ev.NewRole == RoleType.ClassD && scps372 < Plugin.Singleton.Config.Max_SCP372_Count && !scp372.Contains(ev.Player.UserId))
+            if (Player.List.Count() < 3)
             {
-                if (rnd.Next(0, 101) <= Plugin.Singleton.Config.SpawnChance)
+                if (ev.Player.Team == Team.SCP && scp372.Count < Plugin.Singleton.Config.Max_SCP372_Count && !scp372.Contains(ev.Player.UserId))
                 {
-                    Add372(ev.Player);
+                    if (rnd.Next(0, 101) <= Plugin.Singleton.Config.SpawnChance)
+                    {
+                        Add372(ev.Player);
+                    }
+                }
+            }
+            else
+            {
+                if (scp372.Count < Plugin.Singleton.Config.Max_SCP372_Count && !scp372.Contains(ev.Player.UserId))
+                {
+                    if (rnd.Next(0, 101) <= Plugin.Singleton.Config.SpawnChance)
+                    {
+                        Add372(ev.Player);
+                    }
                 }
             }
             if (scp372.Contains(ev.Player.UserId))
@@ -35,7 +47,6 @@ namespace SCP_372
 
         public void OnRoundRestart()
         {
-            scps372 = 0;
             scp372.Clear();
         }
 
@@ -73,47 +84,62 @@ namespace SCP_372
 
         public void OnPickingUpItem(PickingUpItemEventArgs ev)
         {
-            ev.Player.IsInvisible = false;
-            Timing.CallDelayed(0.5f, () =>
+            if (scp372.Contains(ev.Player.UserId))
             {
-                ev.Player.IsInvisible = true;
-            });
+                ev.Player.IsInvisible = false;
+                Timing.CallDelayed(1f, () =>
+                {
+                    ev.Player.IsInvisible = true;
+                });
+            }
         }
 
         public void OnDroppingItem(DroppingItemEventArgs ev)
         {
-            ev.Player.IsInvisible = false;
-            Timing.CallDelayed(0.5f, () =>
+            if (scp372.Contains(ev.Player.UserId))
             {
-                ev.Player.IsInvisible = true;
-            });
+                ev.Player.IsInvisible = false;
+                Timing.CallDelayed(1f, () =>
+                {
+                    ev.Player.IsInvisible = true;
+                });
+            }
         }
 
         public void OnInteractingDoor(InteractingDoorEventArgs ev)
         {
-            ev.Player.IsInvisible = false;
-            Timing.CallDelayed(1f, () =>
+            if (scp372.Contains(ev.Player.UserId))
             {
-                ev.Player.IsInvisible = true;
-            });
+                ev.Player.IsInvisible = false;
+                Timing.CallDelayed(1f, () =>
+                {
+                    ev.Player.IsInvisible = true;
+                });
+            }
         }
 
         public void OnInteractingElevator(InteractingElevatorEventArgs ev)
         {
-            ev.Player.IsInvisible = false;
-            Timing.CallDelayed(1f, () =>
+            if (scp372.Contains(ev.Player.UserId))
             {
-                ev.Player.IsInvisible = true;
-            });
+                ev.Player.IsInvisible = false;
+                Timing.CallDelayed(1f, () =>
+                {
+                    ev.Player.IsInvisible = true;
+                });
+            }
         }
 
         public void OnInteractingLocker(InteractingLockerEventArgs ev)
         {
-            ev.Player.IsInvisible = false;
-            Timing.CallDelayed(1f, () =>
+            if (scp372.Contains(ev.Player.UserId))
             {
-                ev.Player.IsInvisible = true;
-            });
+                ev.Player.IsInvisible = false;
+                Timing.CallDelayed(1f, () =>
+                {
+                    ev.Player.IsInvisible = true;
+                });
+            }
         }
 
         public void onPlayerDied(DiedEventArgs ev)
@@ -125,12 +151,12 @@ namespace SCP_372
             }
         }
 
-        public void Add372(Player p)
+        public static void Add372(Player p)
         {
-            if (scps372 < Plugin.Singleton.Config.Max_SCP372_Count)
+            if (scp372.Count < Plugin.Singleton.Config.Max_SCP372_Count)
             {
                 p.IsInvisible = true;
-                p.Broadcast(Plugin.Singleton.Config.SpawnMessage.Duration, Plugin.Singleton.Config.SpawnMessage.Content, Broadcast.BroadcastFlags.Normal, true);
+                p.Broadcast(Plugin.Singleton.Config.SpawnMessage);
                 Timing.CallDelayed(0.5f, () =>
                 {
                     p.GameObject.AddComponent<SCP372Component>();
@@ -141,7 +167,6 @@ namespace SCP_372
                     Scp096.TurnedPlayers.Add(p);
                     Scp173.TurnedPlayers.Add(p);
                     scp372.Add(p.UserId);
-                    scps372++;
                 });
                 Timing.CallDelayed(1f, () =>
                 {
@@ -168,7 +193,7 @@ namespace SCP_372
             }
         }
 
-        public void Remove372(Player p)
+        public static void Remove372(Player p)
         {
             if (scp372.Contains(p.UserId))
             {
@@ -177,7 +202,6 @@ namespace SCP_372
                 Scp096.TurnedPlayers.Remove(p);
                 Scp173.TurnedPlayers.Remove(p);
                 scp372.Remove(p.UserId);
-                scps372--;
             }
             p.CustomInfo = null;
         }
