@@ -26,7 +26,8 @@ namespace SCP_372
             handler = new Handlers();
 
             Plugin.Singleton = this;
-            PlayerEv.ChangingRole += handler.OnChangingRole;
+            ServerEv.EndingRound += handler.OnEndingRound;
+            PlayerEv.Spawning += handler.OnSpawningPlayers;
             PlayerEv.Shooting += handler.OnShooting;
             PlayerEv.Died += handler.onPlayerDied;
             PlayerEv.Hurting += handler.OnPlayerHurt;
@@ -44,7 +45,8 @@ namespace SCP_372
 
         public override void OnDisabled()
         {
-            PlayerEv.ChangingRole -= handler.OnChangingRole;
+            ServerEv.EndingRound -= handler.OnEndingRound;
+            PlayerEv.Spawning -= handler.OnSpawningPlayers;
             PlayerEv.Shooting -= handler.OnShooting;
             PlayerEv.Died -= handler.onPlayerDied;
             PlayerEv.Hurting -= handler.OnPlayerHurt;

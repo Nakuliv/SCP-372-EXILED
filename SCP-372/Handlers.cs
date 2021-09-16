@@ -16,7 +16,12 @@ namespace SCP_372
         public Handlers handlers;
         public static HashSet<string> scp372 = new HashSet<string>();
         public System.Random rnd = new System.Random();
-        public void OnChangingRole(ChangingRoleEventArgs ev)
+
+        public static void RemoveDisplayInfo(PlayerInfoArea playerInfo, Player ply) => ply.ReferenceHub.nicknameSync.Network_playerInfoToShow &= ~playerInfo;
+
+        public static void AddDisplayInfo(PlayerInfoArea playerInfo, Player ply) => ply.ReferenceHub.nicknameSync.Network_playerInfoToShow |= playerInfo;
+
+        public void OnSpawningPlayers(SpawningEventArgs ev)
         {
             if (Player.List.Count() < 3)
             {
@@ -30,7 +35,7 @@ namespace SCP_372
             }
             else
             {
-                if (scp372.Count < Plugin.Singleton.Config.Max_SCP372_Count && !scp372.Contains(ev.Player.UserId))
+                if (ev.RoleType == RoleType.ClassD && scp372.Count < Plugin.Singleton.Config.Max_SCP372_Count && !scp372.Contains(ev.Player.UserId))
                 {
                     if (rnd.Next(0, 101) <= Plugin.Singleton.Config.SpawnChance)
                     {
@@ -43,6 +48,14 @@ namespace SCP_372
                 Remove372(ev.Player);
             }
 
+        }
+
+        public void OnChangingRole(ChangingRoleEventArgs ev)
+        {
+            if (scp372.Contains(ev.Player.UserId) && ev.NewRole != RoleType.ClassD)
+            {
+                Remove372(ev.Player);
+            }
         }
 
         public void OnRoundRestart()
@@ -159,6 +172,7 @@ namespace SCP_372
                 p.Broadcast(Plugin.Singleton.Config.SpawnMessage);
                 Timing.CallDelayed(0.5f, () =>
                 {
+                    RemoveDisplayInfo(PlayerInfoArea.Role, p);
                     p.GameObject.AddComponent<SCP372Component>();
                     p.Role = RoleType.Tutorial;
                     p.MaxHealth = Plugin.Singleton.Config.Health;
@@ -183,7 +197,20 @@ namespace SCP_372
                 });
             }
         }
+        public void OnEndingRound(EndingRoundEventArgs ev)
+        {
+            List<Team> teams = (from player in Player.List where !scp372.Contains(player.UserId) select player.Team).ToList();
 
+            if (teams.All(team => team == Team.TUT || team == Team.SCP || team == Team.RIP))
+            {
+                ev.LeadingTeam = LeadingTeam.Anomalies;
+                ev.IsRoundEnded = true;
+            }
+            else
+            {
+                ev.IsAllowed = false;
+            }
+        }
         public void OnPlayerHurt(HurtingEventArgs ev)
         {
 
@@ -197,6 +224,7 @@ namespace SCP_372
         {
             if (scp372.Contains(p.UserId))
             {
+                AddDisplayInfo(PlayerInfoArea.Role, p);
                 p.GameObject.GetComponent<SCP372Component>().Destroy();
                 p.IsInvisible = false;
                 Scp096.TurnedPlayers.Remove(p);
