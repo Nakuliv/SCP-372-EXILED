@@ -85,6 +85,7 @@
     <Compile Include="Handlers.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SCP372Component.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

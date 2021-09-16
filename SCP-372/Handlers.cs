@@ -92,7 +92,7 @@ namespace SCP_372
         public void OnInteractingDoor(InteractingDoorEventArgs ev)
         {
             ev.Player.IsInvisible = false;
-            Timing.CallDelayed(0.5f, () =>
+            Timing.CallDelayed(1f, () =>
             {
                 ev.Player.IsInvisible = true;
             });
@@ -101,7 +101,7 @@ namespace SCP_372
         public void OnInteractingElevator(InteractingElevatorEventArgs ev)
         {
             ev.Player.IsInvisible = false;
-            Timing.CallDelayed(0.5f, () =>
+            Timing.CallDelayed(1f, () =>
             {
                 ev.Player.IsInvisible = true;
             });
@@ -110,7 +110,7 @@ namespace SCP_372
         public void OnInteractingLocker(InteractingLockerEventArgs ev)
         {
             ev.Player.IsInvisible = false;
-            Timing.CallDelayed(0.5f, () =>
+            Timing.CallDelayed(1f, () =>
             {
                 ev.Player.IsInvisible = true;
             });
@@ -133,6 +133,7 @@ namespace SCP_372
                 p.Broadcast(Plugin.Singleton.Config.SpawnMessage.Duration, Plugin.Singleton.Config.SpawnMessage.Content, Broadcast.BroadcastFlags.Normal, true);
                 Timing.CallDelayed(0.5f, () =>
                 {
+                    p.GameObject.AddComponent<SCP372Component>();
                     p.Role = RoleType.Tutorial;
                     p.MaxHealth = Plugin.Singleton.Config.Health;
                     p.Health = Plugin.Singleton.Config.Health;
@@ -171,6 +172,7 @@ namespace SCP_372
         {
             if (scp372.Contains(p.UserId))
             {
+                p.GameObject.GetComponent<SCP372Component>().Destroy();
                 p.IsInvisible = false;
                 Scp096.TurnedPlayers.Remove(p);
                 Scp173.TurnedPlayers.Remove(p);
