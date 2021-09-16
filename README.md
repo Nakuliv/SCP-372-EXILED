@@ -1,7 +1,7 @@
 # SCP-372-EXILED
 Adds a SCP-372 to the game.
 # Description
-SCP-372 is invisible (unless shooting or throwing grenades) and he cannot hurt other SCPs.
+SCP-372 is invisible (unless it shoots, throws grenades, opens doors or speaks) and he cannot hurt other SCPs.
 ```  # Whether or not this plugin is enabled.
   is_enabled: true
   spawn_chance: 100
