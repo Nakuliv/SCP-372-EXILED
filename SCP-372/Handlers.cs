@@ -199,16 +199,17 @@ namespace SCP_372
         }
         public void OnEndingRound(EndingRoundEventArgs ev)
         {
-            List<Team> teams = (from player in Player.List where !scp372.Contains(player.UserId) select player.Team).ToList();
-
-            if (teams.All(team => team == Team.TUT || team == Team.SCP || team == Team.RIP))
+            if (scp372.Count > 0)
             {
-                ev.LeadingTeam = LeadingTeam.Anomalies;
-                ev.IsRoundEnded = true;
-            }
-            else
-            {
-                ev.IsAllowed = false;
+                if (Player.Get(Team.CDP).ToList().Count == 0 && Player.Get(Team.MTF).ToList().Count == 0 && Player.Get(Team.RSC).ToList().Count == 0)
+                {
+                    ev.LeadingTeam = LeadingTeam.Anomalies;
+                    ev.IsRoundEnded = true;
+                }
+                else
+                {
+                    ev.IsAllowed = false;
+                }
             }
         }
         public void OnPlayerHurt(HurtingEventArgs ev)

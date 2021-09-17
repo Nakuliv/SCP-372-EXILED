@@ -16,7 +16,7 @@ namespace SCP_372
 
         public override string Name { get; } = "SCP-372";
         public override string Author { get; } = "Naku";
-        public override Version Version => new Version(1, 4, 1);
+        public override Version Version => new Version(1, 4, 2);
         public override Version RequiredExiledVersion => new Version(3, 0, 0);
 
         private Handlers handler;
